@@ -1,23 +1,95 @@
 @tailwind base;
-
 /* Write your own custom base styles here */
-
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+
 
 html,
 body {
-  @apply bg-gray-900 text-white;
+  background: #E5E5E5;
+  min-height: 720px;
+  min-width: 1024px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 60px 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  background-color: #fdfdfd;
+  padding: 10px;
+  min-width: 1024px;
+  min-height: 720px;
+}
+
+.header{
+  background: #000000;
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.order{
+  background: #519E8A;
+  border: 2px solid #000000;
+  box-sizing: border-box;
+  border-radius: 0px 5px 0px 0px;
+  color:#F2F2F2;
+
+  height: 100%;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.icon{
+  background:#519E8A;
+
+}
+.icons{
+  transform: rotate(-180deg);
+  background: #fff;
+  width: 60px;
+  height: 8px;
+  margin: 6px;
+}
+.order-title{
+
+}
+
+.logout{
+  background: #519E8A;
+  color:#F2F2F2;
+  padding: 5px;
+  height: 100%;
+  width: 150px;
+}
+
+.menu{
+  background: sandybrown;
+  grid-column: 1 / 2;
+  grid-row: 2 / -1;
+}
+.main{
+  background: skyblue;
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+}
+.footer{
+  background:#d4aaaa;
 }
 
 /* Write your own custom component styles here */
 .btn-blue {
   @apply px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600;
 }
-
-/* Start purging... */
-@tailwind utilities;
-/* Stop purging. */
 
 /* Your own custom utilities */
