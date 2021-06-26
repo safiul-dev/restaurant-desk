@@ -24,7 +24,11 @@ function Home() {
         </div>
         <div className="menu">Menu</div>
         <div className="main">Main</div>  
-        <div className="footer">Footer</div>
+        <div className="footer">
+          <div className="timestamp">
+            Date Time showing...
+          </div>
+        </div>
       </div>
     </React.Fragment>
   );

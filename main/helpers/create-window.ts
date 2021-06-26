@@ -70,6 +70,9 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
   const browserOptions: BrowserWindowConstructorOptions = {
     ...options,
     ...state,
+    // width: 1024,
+    // height: 720,
+    resizable:false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
