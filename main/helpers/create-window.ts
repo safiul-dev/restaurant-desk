@@ -72,7 +72,7 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
     ...state,
     // width: 1024,
     // height: 720,
-    resizable:false,
+    // resizable:false,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

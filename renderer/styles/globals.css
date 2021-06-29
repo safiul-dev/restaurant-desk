@@ -11,12 +11,12 @@
 
 html,
 body {
-  background: #000000;
-  min-height: 720px;
-  min-width:1024px;
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
 }
 
-.grid-container {
+/* .grid-container {
   display: grid;
   grid-template-columns: 150px 1fr;
   grid-template-rows: 60px 1fr 60px;
@@ -24,8 +24,8 @@ body {
   grid-auto-rows: minmax(100px, auto);
   background-color: #fdfdfd;
   padding: 10px;
-  min-width: 1024px;
-  min-height: 720px;
+  height: 1024px;
+  width: 720px;
 }
 
 .header{
@@ -87,11 +87,11 @@ body {
   background:#d4aaaa;
   grid-column: 1 / -1;
   
-}
+} */
 
 /* Write your own custom component styles here */
-.btn-blue {
+/* .btn-blue {
   @apply px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-600;
-}
+} */
 
 /* Your own custom utilities */
