@@ -4,14 +4,18 @@ module.exports = {
     colors: {
       middle1Bg: '#BCDDD4',
       primary: '#519E8A',
-      secondary: '#ecc94b',
+      secondary: '#BCDDD4',
       black: '#000000',
       white: '#FFFFFF',
-      TheadColor: '#748883'
+      TheadColor: '#748883',
+      buttomButtonDarkLight: '#748883',
+      red: '#CA054D',
+      middleButtonFontColor: '#748883'
     },
     fontSize: {
       'mainButtonFontSize': '30px',
       'leftButtonFontSize': '24px',
+      'smallFont': '10px',
       'tiny': '.875rem',
        'base': '1rem',
        'lg': '1.125rem',
@@ -32,6 +36,11 @@ module.exports = {
         'middle1': '47.6603%',
         'middle2': '22.5303%',
         'middle3': '29.809%',
+        'width5%': '5%',
+        'width20%': '30%',
+        'width75%': '65%',
+        'width45%': '48%'
+        
       },
 
       height: {
@@ -40,9 +49,11 @@ module.exports = {
         'middleHeight': '90%',
         'bottomHeight': '5%',
         'middle1SmallTableCollunmHeight': '7%',
-        'middle1LongTableCollunmHeight': '79%'
+        'middle1LongTableCollunmHeight': '79%',
+        'height20%': '20%',
+        'middleSegmentHeight': '96%',
+        'middle2ButtonHeight': '25%',
       },
-
       borderRadius: {
         'none': '0',
        'sm': '0.125rem',
