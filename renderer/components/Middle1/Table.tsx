@@ -9,7 +9,7 @@ export default function Table () {
                     <td className="border border-white w-width20% text-center">Amount</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody className="overflow-y-auto">
                 <tr className="border border-white" >
                     <td className="border border-white text-center">
                         2

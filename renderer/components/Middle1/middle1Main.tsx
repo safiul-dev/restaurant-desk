@@ -3,7 +3,7 @@ import Table from "./Table"
 export default function Middle1Main () {
     return (
         <div className="w-full h-full"> 
-            <div className="w-full bg-middle1Bg h-4/5">
+            <div className="w-full bg-middle1Bg overflow-y-auto h-4/5">
                 <div className="h-4/5 pt-3 bg-primary w-full rounded-b-middle1BottomRounded shadow-lg">
                     <div className="h-4/5 mx-2 ">
                         <div className="h-full">
@@ -39,7 +39,7 @@ export default function Middle1Main () {
                    
                 </div>
 
-                    <div className="mt-16 flex justify-between font-normal text-tiny mx-3">
+                    <div className="mt-16 flex justify-between font-normal text-tiny mx-3 ">
                         <div>Tecket Opening: 04:30 PM (10 min.)</div>
                         <div>Lat Order: 03:30 PM (60 min.)</div>
                     </div>

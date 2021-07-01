@@ -56,7 +56,7 @@ function Home() {
                     <div className="w-middle2 h-middleSegmentHeight mr-1 "><Middle2Main/></div>
                     <div className="w-middle3 h-middleSegmentHeight mr-1 ml-3"><Middle3Main/></div>
                 </div>
-                <div className="w-rigthWidth h-full bg-black">dfdf</div>
+                <div className="w-rigthWidth h-full bg-black"></div>
             </div>
 
             <div className="w-full h-bottomHeight">
