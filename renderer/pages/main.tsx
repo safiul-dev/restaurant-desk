@@ -53,7 +53,7 @@ function Home() {
                   <LeftMain/>
                 </div>
 
-                <Main/>
+                this is main
                 
                 <div className="w-rigthWidth h-full bg-black"></div>
             </div>

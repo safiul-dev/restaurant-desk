@@ -1,15 +1,22 @@
+import { useEffect, useState } from "react"
 
 
 export default function Footer () {
 
-
+  // const [getTime, setTime] = useState({});
+  // setTime(prevState => {
+  //   // Object.assign would also work
+  //   return {date: new Date().toLocaleTimeString()};
+  // });
+    
+    
     return (
         <div className="flex justify-between">
         <div className="flex text-white mt-2 ml-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {new Date().toLocaleTimeString() }
+            fdsfjdsklfj
         </div>
 
         <div className="text-white flex mt-2">

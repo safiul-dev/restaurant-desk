@@ -52,6 +52,51 @@ export default function Middle2Main () {
                 </button>
                 
             </div>
+            <div className=" mt-2 flex justify-between">
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        Burger
+                </button>
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        apatiz-ers
+                </button>
+                
+            </div>
+            <div className=" mt-2 flex justify-between">
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        Burger
+                </button>
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        apatiz-ers
+                </button>
+                
+            </div>
+            <div className=" mt-2 flex justify-between">
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        Burger
+                </button>
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        apatiz-ers
+                </button>
+                
+            </div>
+            <div className=" mt-2 flex justify-between">
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        Burger
+                </button>
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        apatiz-ers
+                </button>
+                
+            </div>
+            <div className=" mt-2 flex justify-between">
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        Burger
+                </button>
+                <button className=" bg-secondary rounded-md text-middleButtonFontColor uppercase font-bold w-width45% h-28 flex justify-center items-center hover:text-white hover:bg-primary hover:shadow-xl">
+                        apatiz-ers
+                </button>
+                
+            </div>
 
 
 

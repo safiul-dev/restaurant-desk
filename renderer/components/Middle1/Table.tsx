@@ -1,7 +1,7 @@
 
 export default function Table () {
     return(
-        <table className=" w-full table-auto">
+        <table className="w-full table-auto">
             <thead className="bg-TheadColor rounded text-white ">
                 <tr className="border-white border">
                     <td className="border border-white w-width5% text-center">QT</td>
@@ -9,7 +9,7 @@ export default function Table () {
                     <td className="border border-white w-width20% text-center">Amount</td>
                 </tr>
             </thead>
-            <tbody className="overflow-y-auto">
+            <tbody>
                 <tr className="border border-white" >
                     <td className="border border-white text-center">
                         2
