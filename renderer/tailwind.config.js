@@ -16,6 +16,7 @@ module.exports = {
       'mainButtonFontSize': '30px',
       'leftButtonFontSize': '24px',
       'smallFont': '10px',
+      'extraSmall': '6px',
       'tiny': '.875rem',
        'base': '1rem',
        'lg': '1.125rem',
@@ -53,6 +54,10 @@ module.exports = {
         'height20%': '20%',
         'middleSegmentHeight': '96%',
         'middle2ButtonHeight': '25%',
+        'middle1BottomButtonHeight': '88%',
+        'middle2ButtonHeight': '20%',
+        'middle3ButtonHeight': '16%',
+        'middle1MainAmountHeight': '18%'
       },
       borderRadius: {
         'none': '0',

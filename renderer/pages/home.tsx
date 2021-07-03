@@ -15,30 +15,8 @@ function Home() {
       <Head>
         <title>Home</title>
       </Head>
-      {/* <div className="grid-container">
-        <div className="header">
-          <div className="order">
-            <div className="icon">
-              <div className="icons"></div>
-              <div className="icons"></div>
-              <div className="icons"></div>
-            </div> 
-            <div className="order-title">
-              ORDER
-            </div>
-          </div>
-          <div className="logout">LOG OUT</div>
-        </div>
-        <div className="menu">Menu</div>
-        <div className="main">Main</div>  
-        <div className="footer">
-          <div className="timestamp">
-            Date Time showing...
-          </div>
-        </div>
-      </div> */}
 
-      <div className="w-screen max-w-full md:max-w-screen h-screen max-h-full md:max-h-screen bg-black overflow-auto md:overflow-scroll">
+      <div className="w-screen max-w-full md:max-w-screen h-screen max-h-full md:max-h-screen bg-black fixed">
         <div className=" overflow-y-auto h-full ">
             <div className="flex justify-between h-topHeight">
 

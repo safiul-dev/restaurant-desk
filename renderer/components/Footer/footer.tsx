@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 
 export default function Footer () {
 
-  // const [getTime, setTime] = useState({});
-  // setTime(prevState => {
-  //   // Object.assign would also work
-  //   return {date: new Date().toLocaleTimeString()};
-  // });
-    
+  const [getState, setState] = useState(new Date().toLocaleTimeString())
+  
+  setTimeout(() => (
+    setState(new Date().toLocaleTimeString())
+  ), 1000)
+
+  
     
     return (
         <div className="flex justify-between">
@@ -16,7 +17,7 @@ export default function Footer () {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            fdsfjdsklfj
+            {getState}
         </div>
 
         <div className="text-white flex mt-2">

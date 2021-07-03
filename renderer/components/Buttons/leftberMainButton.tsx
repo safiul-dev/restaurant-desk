@@ -9,7 +9,7 @@ export default function LeftberMainButton () {
                  </div>
 
                  <div>
-                        <h1 className="text-white uppercase not-italic md:font-fold font-black md:tracking-normal tracking-wide font-sans md:text-xl text-mainButtonFontSize">order</h1>
+                        <h1 className="text-white uppercase not-italic sm:font-light md:font-medium lg:font-semibold xl:font-bold tracking-wide font-sans text-leftButtonFontSize sm:text-tiny md:text-base lg:text-lg xl:text-xl text-center">order</h1>
                   </div>
             </div>
     )
