@@ -17,6 +17,7 @@ module.exports = {
       'leftButtonFontSize': '24px',
       'smallFont': '10px',
       'extraSmall': '6px',
+      'extraSmall2': '8px',
       'tiny': '.875rem',
        'base': '1rem',
        'lg': '1.125rem',
@@ -45,7 +46,7 @@ module.exports = {
       },
 
       height: {
-        'leftberButtonHeight': '63px',
+        'leftberButtonHeight': '8%',
         'topHeight': '5%',
         'middleHeight': '90%',
         'bottomHeight': '5%',

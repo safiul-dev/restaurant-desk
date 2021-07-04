@@ -11,41 +11,12 @@ import Footer from '../components/Footer/footer';
 import Main from '../components/MiddleMain/Main';
 function Home() {
   return (
-    <React.Fragment>
-      <Head>
-        <title>Home</title>
-      </Head>
-
-      <div className="w-screen max-w-full md:max-w-screen h-screen max-h-full md:max-h-screen bg-black fixed">
-        <div className=" overflow-y-auto h-full ">
-            <div className="flex justify-between h-topHeight">
-
-              <LeftberMainButton/>
-              <div className="text-white uppercase bg-primary pr-5 pl-5 flex justify-center items-center mb-0.5 rounded-md font-bold">
-                LogOut
-              </div>
-            </div>
-
-            <div className="bg-white w-full flex h-middleHeight">
-                <div className="w-leftMainWidth h-full bg-black">
-                  <LeftMain/>
-                </div>
-
-                <Main/>
-                
-                <div className="w-rigthWidth h-full bg-black"></div>
-            </div>
-
-            <div className="w-full h-bottomHeight">
-              <Footer/>
-            </div>
+            <div className="w-full h-full flex">
+                        
+            <div className="w-middle1 h-middleSegmentHeight"><Middle1Main/></div>
+            <div className="w-middle2 h-middleSegmentHeight mr-1 "><Middle2Main/></div>
+            <div className="w-middle3 h-middleSegmentHeight mr-1 ml-3"><Middle3Main/></div>
         </div>
-        
-
-
-
-      </div>
-    </React.Fragment>
   );
 }
 

@@ -17,10 +17,10 @@ export default function Table () {
                                         </td>
                                     <td className="border border-white">
                                     
-                                    <h1>Checken Double Decker Bergur</h1>
-                                        <h1 className=" text-center rounded-full font-extralight text-smallFont bg-white w-7/12">Submitted, Sent to kitchend, Order no. 1552</h1>
+                                    <h1 className="2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">Checken Double Decker Bergur</h1>
+                                        <h1 className=" text-center rounded-full font-normal text-smallFont md:text-extraSmall2 sm:text-extraSmall bg-white w-7/12">Submitted, Sent to kitchend, Order no. 1552</h1>
                                     </td>
-                                    <td className="border border-white text-center">2000</td>
+                                    <td className="border border-white text-center 2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">2000</td>
                                 </tr>
 
                                 <tr className="border border-white" >
@@ -29,13 +29,13 @@ export default function Table () {
                                         </td>
                                     <td className="border border-white">
                                     <div>
-                                    <div>Checken Double Decker Bergur</div>
-                                        <div className="text-center rounded-full font-extralight text-smallFont bg-white w-7/12">submited, send to ckichend, order no. 1552</div>
+                                    <div className="2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">Checken Double Decker Bergur</div>
+                                        <div className="text-center rounded-full font-normal text-smallFont md:text-extraSmall2 sm:text-extraSmall bg-white w-7/12">submited, send to ckichend, order no. 1552</div>
                                     
                                     </div>
                                         
                                         </td>
-                                    <td className="border border-white text-center">2000</td>
+                                    <td className="border border-white text-center 2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">2000</td>
                                 </tr>
 
                                                 
