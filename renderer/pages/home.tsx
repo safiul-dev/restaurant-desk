@@ -11,7 +11,7 @@ import Footer from '../components/Footer/footer';
 import Main from '../components/MiddleMain/Main';
 function Home() {
   return (
-            <div className="w-full h-full flex">
+        <div className="w-full h-full flex">
                         
             <div className="w-middle1 h-middleSegmentHeight"><Middle1Main/></div>
             <div className="w-middle2 h-middleSegmentHeight mr-1 "><Middle2Main/></div>
