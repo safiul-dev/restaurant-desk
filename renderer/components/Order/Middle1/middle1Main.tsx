@@ -1,5 +1,6 @@
-import TotalButton from "../Buttons/middle1TotalButon"
+
 import Table from "./Table"
+import TotalButton from '../../Buttons/middle1TotalButon';
 export default function Middle1Main () {
     return (
         <div className="w-full h-full"> 
@@ -45,7 +46,7 @@ export default function Middle1Main () {
                     </div>
             </div>
 
-            <div className="h-height20% w-full flex justify-between xl:mt-4 lg:mt-3 md:mt-2 sm:mt-1">
+            <div className="h-height20% w-full flex justify-between xl:mt-2 lg:mt-3 md:mt-2 sm:mt-1">
                 <button className="uppercase rounded-lg bg-middle1Bg h-middle1BottomButtonHeight w-width45% flex justify-center items-center 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal text-buttomButtonDarkLight">
                     Setteld
                 </button>
