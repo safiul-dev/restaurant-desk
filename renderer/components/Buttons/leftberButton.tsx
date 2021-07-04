@@ -1,6 +1,8 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 
+Modal.setAppElement('#__next');
+
 export default function LeftberButton (props) {
 
     const [model, setModel] = useState(false);
