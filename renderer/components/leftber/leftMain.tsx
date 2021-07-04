@@ -5,46 +5,46 @@ import LeftberMainButton from "../Buttons/leftberMainButton";
 
 export default function LeftMain () {
  
-    const arrObj = [
-        {
-        name:"change table",
-        showComponent:()=>{}
-    },
-    {
-        name:"select waiter",
-        showComponent:()=>{}
-    },
-    {
-        name:"select customer",
-        showComponent:()=>{}
-    },
-    {
-        name:"ticket note",
-        showComponent:()=>{}
-    },
-    {
-        name:"change table",
-        showComponent:()=>{}
-    },
-    {
-        name:"change table",
-        showComponent:()=>{}
-    },
-    {
-        name:"change table",
-        showComponent:()=>{}
-    },
-    {
-        name:"change table",
-        showComponent:()=>{}
-    },
-    {
-        name:"change table",
-        showComponent:()=>{}
-    },
-]
-    const buttons = ['change table','select waiter', 'select customer', 'ticket note', 'canchel all', 'number of goust', 'print', 'split bill','add ticket']
-    const listOfButton = buttons.map((name) =>< LeftberButton name={name} key={name} /> )
+    const buttons = [
+                {
+                name:"change table",
+                showComponent:()=>true
+            },
+            {
+                name:"select waiter",
+                showComponent:()=>true
+            },
+            {
+                name:"select customer",
+                showComponent:()=>true
+            },
+            {
+                name:"ticket note",
+                showComponent:()=>true
+            },
+            {
+                name:"canchel all",
+                showComponent:()=>true
+            },
+            {
+                name:"number of goust",
+                showComponent:()=>true
+            },
+            {
+                name:"print",
+                showComponent:()=>true
+            },
+            {
+                name:"split bill",
+                showComponent:()=>true
+            },
+            {
+                name:"add ticket",
+                showComponent:()=>true
+            },
+        ]
+
+    const listOfButton = buttons.map((items) =>< LeftberButton name={items.name} key={items.name} clicked={items.showComponent} /> )
     return(
         <div className="mx-1 mt-1 overflow-x-auto h-full">
 
