@@ -1,7 +1,6 @@
 import LeftberButton from "../Buttons/leftberButton";
 import LeftberMainButton from "../Buttons/leftberMainButton";
 
-export default function LeftMain () {
 
     
     const buttons = ['change table','select waiter', 'select customer', 'ticket note', 'canchel all', 'number of goust', 'print', 'split bill','add ticket']
