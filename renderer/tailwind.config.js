@@ -39,9 +39,18 @@ module.exports = {
         'middle2': '22.5303%',
         'middle3': '29.809%',
         'width5%': '5%',
-        'width20%': '30%',
-        'width75%': '65%',
-        'width45%': '48%'
+        'width20%': '20%',
+        'width30%': '30%',
+        'width35%': '35%',
+        'width40%': '40%',
+        'width50%': '50%',
+        'width55%': '55%',
+        'width60%': '60%',
+        'width65%': '65%',
+        'width45%': '48%',
+        'width80%': '80%',
+        'width90%': '90%',
+        'width96%': '96%'
         
       },
 
@@ -52,13 +61,20 @@ module.exports = {
         'bottomHeight': '5%',
         'middle1SmallTableCollunmHeight': '7%',
         'middle1LongTableCollunmHeight': '79%',
+        'height5%': '5%',
+        'height10%': '10%',
+        'height14%': '14%',
         'height20%': '20%',
-        'middleSegmentHeight': '96%',
+        'height64%': '64%',
+        'height35%': '35%',
+        'height90%': '90%',
+        'height96%': '96%',
         'middle2ButtonHeight': '25%',
         'middle1BottomButtonHeight': '88%',
-        'middle2ButtonHeight': '20%',
-        'middle3ButtonHeight': '16%',
-        'middle1MainAmountHeight': '18%'
+        'height18%': '18%',
+        'height17%': '17%',
+        'middle1MainAmountHeight': '18%',
+        
       },
       borderRadius: {
         'none': '0',

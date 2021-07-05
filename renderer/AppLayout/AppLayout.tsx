@@ -1,8 +1,5 @@
 import Head from 'next/head';
 import React from 'react';
-import LeftberMainButton from '../components/Buttons/leftberMainButton';
-import LeftMain from '../components/Order/leftber/leftMain';
-import Footer from '../components/Footer/footer';
 import Link from 'next/link';
 
 export default function AppLayout ({ children }) {
@@ -18,8 +15,9 @@ export default function AppLayout ({ children }) {
             {/*  navigation bar .... */}
               <div className="flex justify-between h-topHeight">
   
-                  <div className="flex justify-center items-center bg-primary w-leftMainWidth rounded">
-                      <div className="mr-2">
+                  <div className=" w-leftMainWidth flex justify-center items-center  h-full">
+                    <div className="flex justify-center items-center w-width96% rounded-md h-full mr-1 bg-primary">
+                    <div className="mr-2">
                           <div className=" w-4 bg-white h-0.5"></div>
                           <div className=" w-4 bg-white h-0.5 mt-0.5"></div>
                           <div className=" w-4 bg-white h-0.5 mt-0.5"></div>
@@ -28,10 +26,14 @@ export default function AppLayout ({ children }) {
                       <div>
                               <h1 className="text-white uppercase not-italic sm:font-light md:font-medium lg:font-semibold xl:font-bold tracking-wide font-sans text-leftButtonFontSize sm:text-tiny md:text-base lg:text-lg xl:text-xl text-center">order</h1>
                         </div>
+                    </div>
+                     
                   </div>
-                <button  className="text-white uppercase bg-primary pr-5 pl-5 flex justify-center items-center mb-0.5 rounded-md font-bold">
-                  <Link href="/modalcomp">LogOut</Link>
-                </button>
+                <div  className="w-leftMainWidth  ml-2 flex justify-center item-center">
+                    <button className="text-white uppercase bg-primary w-width96% rounded-md font-bold ">
+                      LogOut
+                    </button>
+                </div>
               </div>
 
             {/* midlle components here... */}

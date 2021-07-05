@@ -1,5 +1,7 @@
+import React from "react";
 import LeftberButton from "../../Buttons/leftberButton";
-export default function LeftMain () {
+export default function LeftbarButtons () {
+
     const data = [
         {
             name:'change table',
@@ -40,12 +42,12 @@ export default function LeftMain () {
     ]
     
     const buttons = ['change table','select waiter', 'select customer', 'ticket note', 'canchel all', 'number of goust', 'print', 'split bill','add ticket']
-    const listOfButton =  data.map((obj) =>< LeftberButton name={obj.name} key={obj.name} /> )
+    const listOfButton =  data.map((obj, index) =>< LeftberButton  name={obj.name} key={index} /> )
     return(
         <div className="mx-1 mt-1 overflow-x-auto h-full">
 
                 {listOfButton}
-            
+
         </div>
     
     )
