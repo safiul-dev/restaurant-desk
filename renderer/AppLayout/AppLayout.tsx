@@ -31,7 +31,7 @@ export default function AppLayout ({ children }) {
                   </div>
                 <div  className="w-leftMainWidth  ml-2 flex justify-center item-center">
                     <button className="text-white uppercase bg-primary w-width96% rounded-md font-bold ">
-                      LogOut
+                      <Link href="/Deshboard/Index"><a>Logout</a></Link>
                     </button>
                 </div>
               </div>

@@ -38,7 +38,7 @@ function Home() {
       </div>
       <div className="w-1/2 h-full">
         
-      <CategoryRightbar2/>
+          <CategoryRightbar2/>
         
       </div>
   </div>
