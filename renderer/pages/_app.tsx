@@ -8,9 +8,9 @@ Modal.setAppElement('#__next');
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <React.Fragment>
-      <AppLayout>
+     
         <Component {...pageProps} />
-      </AppLayout>
+      
     </React.Fragment>
   )
 }

@@ -13,7 +13,7 @@ export default function AppLayout ({ children }) {
           <div className=" overflow-y-auto h-full ">
 
             {/*  navigation bar .... */}
-              <div className="flex justify-between h-topHeight">
+              <div className="flex justify-between h-topHeight mb-0.5">
   
                   <div className=" w-leftMainWidth flex justify-center items-center  h-full">
                     <div className="flex justify-center items-center w-width96% rounded-md h-full mr-1 bg-primary">
@@ -31,7 +31,7 @@ export default function AppLayout ({ children }) {
                   </div>
                 <div  className="w-leftMainWidth  ml-2 flex justify-center item-center">
                     <button className="text-white uppercase bg-primary w-width96% rounded-md font-bold ">
-                      <Link href="/Deshboard/Index"><a>Logout</a></Link>
+                      <Link href="/home"><a>Logout</a></Link>
                     </button>
                 </div>
               </div>

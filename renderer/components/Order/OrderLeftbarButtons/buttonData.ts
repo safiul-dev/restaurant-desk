@@ -1,45 +1,54 @@
+import React from "react";
 
- const ButtonData = () =>({
-     buttons: "this",
-    data:[
-        {
-            name:'change table',
-            component:''
-        },
-        {
-            name:'select waiter',
-            component:''
-        },
-        {
-            name:'select customer',
-            component:''
-        },
-        {
-            name:'ticket note',
-            component:''
-        },
-        {
-            name:'canchel all',
-            component:''
-        },
-        {
-            name:'number of goust',
-            component:''
-        },
-        {
-            name:'print',
-            component:''
-        },
-        {
-            name:'split bill',
-            component:''
-        },
-        {
-            name:'add ticket',
-            component:''
-        },
-    ]
-})
+interface ButtonData { 
+    data:[]
+}
+ class ButtonData extends React.Component{
+    state = {
+        data : [
+            {
+                name:'change table',
+                component:'changeTable'
+            },
+            {
+                name:'select waiter',
+                component:'selectWeiter'
+            },
+            {
+                name:'select customer',
+                component:'selectCustomer'
+            },
+            {
+                name:'ticket note',
+                component:'ticketNote'
+            },
+            {
+                name:'cancel all',
+                component:'cancelAll'
+            },
+            {
+                name:'number of guest',
+                component:'numberOfGuest'
+            },
+            {
+                name:'print',
+                component:'print'
+            },
+            {
+                name:'split bill',
+                component:'splitBill'
+            },
+            {
+                name:'add ticket',
+                component:'addTicket'
+            },
+        ]
+    }  
+    
+   
+ }
+     
+
 
 export default ButtonData;
 
