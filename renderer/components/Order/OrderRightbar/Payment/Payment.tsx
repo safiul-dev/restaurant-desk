@@ -2,63 +2,84 @@
 import SubCategory from '../Category/SubCategory/SubCategory';
 import RightButton from '../../Buttons/RightButton';
 import { Component } from 'react';
+import console from 'console';
 
 interface PaymentProps { 
    
 }
 
-interface PaymentState { 
-   
-   
-      totalAmount: number;
-      serviceCharge: number,
-      discount: number,
-      paidAmount: number,
-      changes: number,
-   
-}
 
-export default class CategoryRightbar2 extends Component <PaymentProps, PaymentState> {
 
+export default class CategoryRightbar2 extends Component <PaymentProps> {
+
+   state = {
+            
+         totalAmount: '0',
+         serviceCharge: '0',
+         discount: '0',
+         paidAmount: '0',
+         changes: '0',
+         eventInputField: ''
+   }
    constructor (props) {
       super(props);
-      this.changeHandler = this.changeHandler.bind(this);
+      
       this.state = {
          
-            totalAmount: 0,
-            serviceCharge: 0,
-            discount: 0,
-            paidAmount: 0,
-            changes: 0,
-         
-        
+            totalAmount: '0',
+            serviceCharge: '0',
+            discount: '0',
+            paidAmount: '0',
+            changes: '0',
+            
+            eventInputField: ''
       }
+      this.changeHandler = this.changeHandler.bind(this);
+      this.eventOnClick = this.eventOnClick.bind(this);
    }
 
+   // getting value from input fields
     changeHandler(e) {
-      this.setState({totalAmount: e.terget.value});
-      this.setState({totalAmount: e.terget.value});
-      this.setState({totalAmount: e.terget.value});
-      this.setState({totalAmount: e.terget.value});
-      this.setState({totalAmount: e.terget.value});
-      console.log(this.state.totalAmount);
+      this.setState({[e.target.name]: e.target.value});
+
    }
-   //  serviceCharge(e) {
-   //    this.setState({ total: e.target.value });
-   //    console.log(this.state.total);
-   // }
-   //  discount(e) {
-   //    this.setState({ total: e.target.value });
-   //    console.log(this.state.total);
-   // }
-   //  paidAmount(e) {
-   //    this.setState({ total: e.target.value });
-   //    console.log(this.state.total);
-   // }
-   //  changes(e) {
-   //    this.setState({ total: e.target.value });
-   //    console.log(this.state.total);
-   // }
+
+   // selecting which field are uisng
+   eventOnClick (e) {
+      this.setState({eventInputField: e.target.name})
+      
+   }
+
+   // add data from calculator to input field
+   buttonHandler(tk) {   
+      if(tk === .5) {
+         this.setState({[this.state.eventInputField] : (parseFloat(this.state[this.state.eventInputField])/2).toString()});
+       }else if(tk === .3){
+         this.setState({[this.state.eventInputField] : (parseFloat(this.state[this.state.eventInputField])/3).toString()});
+        }else{
+          this.setState({[this.state.eventInputField] : this.sum(this.state[this.state.eventInputField], tk)});
+         }       
+      
+      
+   }
+// Summation input field here
+   sum(a, b){
+      if(b === ',' || b === 0 && a != 0) return a + b;
+      if(a){
+      const result = parseFloat(a.replace(/,/g, '')) + parseFloat(b);
+      return result.toString() ;
+      }else{
+         return b.toString();
+      }
+      
+   }
+
+   // C for input field data deleting here
+   inputFieldDeleting () {
+      let inputFields = this.state.eventInputField
+      this.setState({[inputFields]: this.state[inputFields].substr(0, this.state[inputFields].length - 1)});
+      
+   }
     render() {
        return (
          <div className=" w-full h-full flex">
@@ -74,11 +95,11 @@ export default class CategoryRightbar2 extends Component <PaymentProps, PaymentS
                          <h1 className="text-white uppercase rounded bg-TheadColor mb-1 pr-2 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-smallFont">Changes:</h1>
                       </div>
                       <div className="w-width50% h-full">
-                         <input type="text" value={this.state.totalAmount} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
-                         <input type="text" value="40.71" className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
-                         <input type="text" value="41.71" className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
-                         <input type="text" value="1500.00" className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
-                         <input type="text" value="143.00" className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
+                         <input type="text" onClick={this.eventOnClick} name="totalAmount" value={this.state.totalAmount} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
+                         <input type="text" onClick={this.eventOnClick} name="serviceCharge" value={this.state.serviceCharge} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
+                         <input type="text" onClick={this.eventOnClick} name="discount" value={this.state.discount} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
+                         <input type="text" onClick={this.eventOnClick} name="paidAmount" value={this.state.paidAmount} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
+                         <input type="text" onClick={this.eventOnClick} name="changes" value={this.state.changes} onChange={this.changeHandler} className="w-full rounded text-black text-center mb-1 2xl:font-bold xl:font-semibold lg:font-medium md:font-normal sm:font-light 2xl:text-lg xl:text-lg lg:text-base md:text-smallFont sm:text-smallFont" />
                       </div>
                    </div>
                </div>
@@ -86,42 +107,42 @@ export default class CategoryRightbar2 extends Component <PaymentProps, PaymentS
                    <div className="w-full h-full 2xl:px-4 2xl:py-4 xl:px-4 xl:py-4 lg:px-3 lg:py-3 md:px-2 md:my-2 sm:px-1 sm:py-1">
                       <div className="bg-white w-full h-height75% flex rounded-t-md">
                          <div className="w-width20% h-full ">
-                                  <button className="bg-blue h-1/5 w-full rounded-tl-md border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
+                                  <button onClick={() => this.buttonHandler(10)} className="bg-blue h-1/5 w-full rounded-tl-md border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
                                      10
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
+                                  <button onClick={() => this.buttonHandler(20)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
                                      20
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
+                                  <button onClick={() => this.buttonHandler(50)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
                                      50
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
+                                  <button onClick={() => this.buttonHandler(100)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
                                      100
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
+                                  <button onClick={() => this.buttonHandler(1000)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny">
                                      1000
                                   </button>
                          </div>
                          <div className="w-width60% h-height96%">
                             <div className="flex h-height25% mx-0.5 mb-0.5">
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">7</button>
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">8</button>
-                               <button className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">9</button>
+                               <button onClick={() => this.buttonHandler(7)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">7</button>
+                               <button onClick={() => this.buttonHandler(8)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">8</button>
+                               <button onClick={() => this.buttonHandler(9)} className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">9</button>
                             </div>
                             <div className="flex h-height25% mx-0.5 mb-0.5">
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">4</button>
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">5</button>
-                               <button className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">6</button>
+                               <button onClick={() => this.buttonHandler(4)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">4</button>
+                               <button onClick={() => this.buttonHandler(5)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">5</button>
+                               <button onClick={() => this.buttonHandler(6)} className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">6</button>
                             </div>
                             <div className="flex h-height25% mx-0.5 mb-0.5">
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">1</button>
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">2</button>
-                               <button className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">3</button>
+                               <button onClick={() => this.buttonHandler(1)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">1</button>
+                               <button onClick={() => this.buttonHandler(2)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">2</button>
+                               <button onClick={() => this.buttonHandler(3)} className="bg-white w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">3</button>
                             </div>
                             <div className="flex h-height25% mx-0.5 mb-0.5">
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">,</button>
-                               <button className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">0</button>
-                               <button className="bg-black w-full border border-white text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny  ">C</button>
+                               <button onClick={() => this.buttonHandler(',')} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">,</button>
+                               <button onClick={() => this.buttonHandler(0)} className="bg-white mr-0.5 w-full border border-black text-black 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny ">0</button>
+                               <button onClick={() => this.inputFieldDeleting()} className="bg-black w-full border border-white text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-lg md:text-base sm:text-tiny  ">C</button>
                             </div>
                             
                          </div>
@@ -129,13 +150,13 @@ export default class CategoryRightbar2 extends Component <PaymentProps, PaymentS
                                   <button className="bg-TheadColor rounded-tr-md h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
                                      All
                                   </button> 
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
+                                  <button onClick={() => this.buttonHandler(.5)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
                                      1/2
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
+                                  <button onClick={() => this.buttonHandler(.3)} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
                                      1/3
                                   </button>
-                                  <button className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
+                                  <button onClick={() => this.buttonHandler('n')} className="bg-blue h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">
                                      1/N
                                   </button>
                                   <button className=" bg-TheadColor uppercase h-1/5 w-full border border-black text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-medium sm:font-normal 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny ">

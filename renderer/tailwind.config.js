@@ -83,6 +83,7 @@ module.exports = {
         'height35%': '35%',
         'height90%': '90%',
         'height96%': '96%',
+        'height98%': '98%',
         'middle2ButtonHeight': '25%',
         'middle1BottomButtonHeight': '88%',
         'height18%': '18%',
