@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import AppLayout from '../../AppLayout/AppLayout'
 
@@ -10,25 +11,33 @@ export default function Index() {
                 <div className="w-width3% bg-black h-full"></div>
                 <div className="w-width94% bg-white h-full">
                     <div className="w-width70% h-full mx-auto 2xl:mt-6 xl:mt-5 lg:mt-4 md:mt-3 sm:mt-2">
-                        <div className="h-height10%">
-                           
+                        <div className="h-height9% w-full flex justify-center items-center 2xl:mb-6 xl:mb-5 lg:mb-4 md:mb-3 sm:mb-2">
+                            <svg className="h-full" viewBox="0 0 45 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M45 0L45 80L3.17786e-07 80L19.3835 39.8988L3.8147e-06 -1.96701e-06L45 0Z" fill="#519E8A"/>
+                            </svg>
+                            <div className="bg-primary h-full text-center flex items-center justify-center">
+                            <h1 className=" text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-xl lg:text-lg md:text-base sm:text-tiny uppercase">Deshboard</h1>
+                            </div>
+                            <svg className="h-full" viewBox="0 0 45 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 80L2.79753e-06 0L45 2.45877e-06L25.6165 40.1012L45 80L0 80Z" fill="#519E8A"/>
+                            </svg>
 
-                            <h1 className="bg-primary w-width30% mx-auto text-center text-white 2xl:font-black xl:font-extrabold lg:font-bold md:font-semibold sm:font-medium 2xl:text-4xl xl:text-2xl lg:text-xl md:text-lg sm:text-base uppercase">Deshboard</h1>
                         </div>
 
                         <div className="h-height70% w-full">
                             <div className="h-full w-full">
                                 <div className="w-full h-height33% flex mb-2">
-                                    <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal mb-1 h-full hover:shadow-2xl ">
-                                        <div className="flex justify-center items-center">
-                                            <div className="mr-2">
-                                                <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9166 22.0833V7.91667H29.1666V5.08334H24.9166V0.833336H22.0833V5.08334H7.91665V0.833336H5.08331V5.08334H0.833313V7.91667H5.08331V22.0833H0.833313V24.9167H5.08331V29.1667H7.91665V24.9167H22.0833V29.1667H24.9166V24.9167H29.1666V22.0833H24.9166ZM7.91664 7.91667H22.0833V22.0833H7.91664V7.91667Z" fill="white"/>
-                                                </svg> 
+                                    <Link href="/TableCrud/Index"><button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal mb-1 h-full hover:shadow-2xl ">
+                                            <div className="flex justify-center items-center">
+                                                <div className="mr-2">
+                                                    <svg width="28" height="28" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.9166 22.0833V7.91667H29.1666V5.08334H24.9166V0.833336H22.0833V5.08334H7.91665V0.833336H5.08331V5.08334H0.833313V7.91667H5.08331V22.0833H0.833313V24.9167H5.08331V29.1667H7.91665V24.9167H22.0833V29.1667H24.9166V24.9167H29.1666V22.0833H24.9166ZM7.91664 7.91667H22.0833V22.0833H7.91664V7.91667Z" fill="white"/>
+                                                    </svg> 
+                                                </div>
+                                                <div className=" ">Tables</div>
                                             </div>
-                                            <div className=" ">Tables</div>
-                                        </div>
-                                    </button>
+                                        </button>
+                                    </Link>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">
@@ -64,17 +73,18 @@ export default function Index() {
                                     </button>
                                 </div>
                                 <div className="w-full h-height33% flex mb-2">
-                                    <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal mb-1 h-full hover:shadow-2xl ">
-                                    <div className="flex justify-center items-center">
-                                            <div className="mr-2">
-                                            <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.47681 19.0986C5.08453 19.0986 4.77027 18.7778 4.77027 18.3823C4.77027 17.9868 5.08886 17.666 5.47681 17.666H10.1344C10.5267 17.666 10.8409 17.9868 10.8409 18.3823C10.8409 18.7778 10.5245 19.0986 10.1344 19.0986H5.47681ZM13.2423 17.0222C13.0342 17.0222 12.8565 16.842 12.8565 16.6223C12.8565 16.4114 13.0342 16.2312 13.2423 16.2312H14.2501C14.2588 16.2312 14.2805 16.2312 14.2891 16.2312C14.6446 16.24 14.961 16.3103 15.2276 16.4817C15.5245 16.6729 15.7412 16.9629 15.8604 17.3936C15.8604 17.4023 15.8604 17.4133 15.8713 17.4243L15.971 17.8242H24.6164C24.8331 17.8242 25.0022 18.0044 25.0022 18.2153C25.0022 18.2549 24.9913 18.2944 24.9827 18.3362L23.9749 22.4539C23.9359 22.634 23.7776 22.7549 23.5999 22.7549H17.2757C17.4144 23.2756 17.5531 23.5569 17.7395 23.6865C17.9671 23.8359 18.3615 23.8469 19.0247 23.8359H19.0334H23.5002C23.717 23.8359 23.886 24.0161 23.886 24.2271C23.886 24.4468 23.7083 24.6182 23.5002 24.6182H19.0312C18.2098 24.627 17.707 24.6072 17.3017 24.3369C16.8856 24.0557 16.6688 23.5767 16.4521 22.7043L15.1279 17.6221C15.1279 17.6111 15.1279 17.6111 15.1192 17.6023C15.0607 17.3826 14.961 17.231 14.8223 17.1519C14.6836 17.0618 14.4972 17.0222 14.2783 17.0222C14.2674 17.0222 14.2588 17.0222 14.2479 17.0222H13.2423ZM22.3429 25.0774C22.8674 25.0774 23.2922 25.5081 23.2922 26.0398C23.2922 26.5715 22.8674 27.0022 22.3429 27.0022C21.8184 27.0022 21.3936 26.5715 21.3936 26.0398C21.3936 25.5081 21.8184 25.0774 22.3429 25.0774ZM18.1816 25.0774C18.7061 25.0774 19.1309 25.5081 19.1309 26.0398C19.1309 26.5715 18.7061 27.0022 18.1816 27.0022C17.6571 27.0022 17.2323 26.5715 17.2323 26.0398C17.2323 25.5081 17.6593 25.0774 18.1816 25.0774ZM5.47681 7.37842C5.08453 7.37842 4.77027 7.05542 4.77027 6.66211C4.77027 6.2666 5.08886 5.9458 5.47681 5.9458H16.4261C16.8184 5.9458 17.1326 6.2666 17.1326 6.66211C17.1326 7.05762 16.8162 7.37842 16.4261 7.37842H5.47681ZM1.64066 0H20.1994C20.6524 0 21.0642 0.186768 21.3589 0.485596C21.6537 0.784424 21.8379 1.2019 21.8379 1.66113V14.8403H20.4291V1.66772C20.4291 1.604 20.4031 1.54468 20.3619 1.50073C20.3186 1.45898 20.2601 1.43262 20.1972 1.43262H1.64066C1.57781 1.43262 1.51929 1.45898 1.47594 1.50073C1.4326 1.54248 1.41092 1.604 1.41092 1.66772V23.3481C1.41092 23.4119 1.43693 23.4712 1.47811 23.5151C1.51929 23.5591 1.57781 23.5833 1.64283 23.5833H13.5739C13.7061 24.1084 13.8557 24.5676 14.0572 25.0049H1.64066C1.18769 25.0049 0.7759 24.8181 0.481144 24.5193C0.184222 24.2227 0 23.8052 0 23.3459V1.66333C0 1.2041 0.184222 0.784424 0.478977 0.485596C0.773732 0.186768 1.18769 0 1.64066 0ZM5.47681 13.2385C5.08453 13.2385 4.77027 12.9177 4.77027 12.5222C4.77027 12.1267 5.08886 11.8059 5.47681 11.8059H16.4261C16.8184 11.8059 17.1326 12.1267 17.1326 12.5222C17.1326 12.9177 16.8162 13.2385 16.4261 13.2385H5.47681Z" fill="white"/>
-                                            </svg>
+                                    <Link href="/Order/Index">
+                                        <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal mb-1 h-full hover:shadow-2xl ">
+                                            <div className="flex justify-center items-center">
+                                                    <div className="mr-2">
+                                                    <svg width="25" height="27" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5.47681 19.0986C5.08453 19.0986 4.77027 18.7778 4.77027 18.3823C4.77027 17.9868 5.08886 17.666 5.47681 17.666H10.1344C10.5267 17.666 10.8409 17.9868 10.8409 18.3823C10.8409 18.7778 10.5245 19.0986 10.1344 19.0986H5.47681ZM13.2423 17.0222C13.0342 17.0222 12.8565 16.842 12.8565 16.6223C12.8565 16.4114 13.0342 16.2312 13.2423 16.2312H14.2501C14.2588 16.2312 14.2805 16.2312 14.2891 16.2312C14.6446 16.24 14.961 16.3103 15.2276 16.4817C15.5245 16.6729 15.7412 16.9629 15.8604 17.3936C15.8604 17.4023 15.8604 17.4133 15.8713 17.4243L15.971 17.8242H24.6164C24.8331 17.8242 25.0022 18.0044 25.0022 18.2153C25.0022 18.2549 24.9913 18.2944 24.9827 18.3362L23.9749 22.4539C23.9359 22.634 23.7776 22.7549 23.5999 22.7549H17.2757C17.4144 23.2756 17.5531 23.5569 17.7395 23.6865C17.9671 23.8359 18.3615 23.8469 19.0247 23.8359H19.0334H23.5002C23.717 23.8359 23.886 24.0161 23.886 24.2271C23.886 24.4468 23.7083 24.6182 23.5002 24.6182H19.0312C18.2098 24.627 17.707 24.6072 17.3017 24.3369C16.8856 24.0557 16.6688 23.5767 16.4521 22.7043L15.1279 17.6221C15.1279 17.6111 15.1279 17.6111 15.1192 17.6023C15.0607 17.3826 14.961 17.231 14.8223 17.1519C14.6836 17.0618 14.4972 17.0222 14.2783 17.0222C14.2674 17.0222 14.2588 17.0222 14.2479 17.0222H13.2423ZM22.3429 25.0774C22.8674 25.0774 23.2922 25.5081 23.2922 26.0398C23.2922 26.5715 22.8674 27.0022 22.3429 27.0022C21.8184 27.0022 21.3936 26.5715 21.3936 26.0398C21.3936 25.5081 21.8184 25.0774 22.3429 25.0774ZM18.1816 25.0774C18.7061 25.0774 19.1309 25.5081 19.1309 26.0398C19.1309 26.5715 18.7061 27.0022 18.1816 27.0022C17.6571 27.0022 17.2323 26.5715 17.2323 26.0398C17.2323 25.5081 17.6593 25.0774 18.1816 25.0774ZM5.47681 7.37842C5.08453 7.37842 4.77027 7.05542 4.77027 6.66211C4.77027 6.2666 5.08886 5.9458 5.47681 5.9458H16.4261C16.8184 5.9458 17.1326 6.2666 17.1326 6.66211C17.1326 7.05762 16.8162 7.37842 16.4261 7.37842H5.47681ZM1.64066 0H20.1994C20.6524 0 21.0642 0.186768 21.3589 0.485596C21.6537 0.784424 21.8379 1.2019 21.8379 1.66113V14.8403H20.4291V1.66772C20.4291 1.604 20.4031 1.54468 20.3619 1.50073C20.3186 1.45898 20.2601 1.43262 20.1972 1.43262H1.64066C1.57781 1.43262 1.51929 1.45898 1.47594 1.50073C1.4326 1.54248 1.41092 1.604 1.41092 1.66772V23.3481C1.41092 23.4119 1.43693 23.4712 1.47811 23.5151C1.51929 23.5591 1.57781 23.5833 1.64283 23.5833H13.5739C13.7061 24.1084 13.8557 24.5676 14.0572 25.0049H1.64066C1.18769 25.0049 0.7759 24.8181 0.481144 24.5193C0.184222 24.2227 0 23.8052 0 23.3459V1.66333C0 1.2041 0.184222 0.784424 0.478977 0.485596C0.773732 0.186768 1.18769 0 1.64066 0ZM5.47681 13.2385C5.08453 13.2385 4.77027 12.9177 4.77027 12.5222C4.77027 12.1267 5.08886 11.8059 5.47681 11.8059H16.4261C16.8184 11.8059 17.1326 12.1267 17.1326 12.5222C17.1326 12.9177 16.8162 13.2385 16.4261 13.2385H5.47681Z" fill="white"/>
+                                                    </svg>
 
-                                            </div>
-                                            <div className=" ">Orders</div>
-                                        </div>
-                                    </button>
+                                                    </div>
+                                                    <div className=" ">Orders</div>
+                                                </div>
+                                        </button></Link>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">

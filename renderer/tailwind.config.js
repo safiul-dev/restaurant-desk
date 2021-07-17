@@ -42,6 +42,8 @@ module.exports = {
         'middle3': '29.809%',
         'width5%': '5%',
         'width3%': '3%',
+        'width10%': '10%',
+        'width15%': '15%',
         'width12%': '12%',
         'width20%': '20%',
         'width25%': '25%',
@@ -58,7 +60,8 @@ module.exports = {
         'width80%': '80%',
         'width90%': '90%',
         'width94%': '94%',
-        'width96%': '96%'
+        'width96%': '96%',
+        'width99%': '99%',
         
       },
 

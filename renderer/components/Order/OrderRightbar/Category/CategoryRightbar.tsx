@@ -8,47 +8,15 @@ export default function CategoryRightbar1() {
         <div className="w-width40% h-height96% mt-2 mr-1">
         <div className="w-full h-full rounded-md border border-black ">
           <div className="mx-0.5 my-0.5  h-full">
-              <div className="grid grid-flow-row auto-rows-max md:auto-rows-min grid-cols-2 gap-1 h-height98%">
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
+              <div className="grid grid-flow-row grid-cols-2 gap-1 overflow-y-auto h-full">
+                    <button className=" 2xl:h-36 xl:h-32 lg:h-28 md:h-24 sm:h-16 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
                             Burger
                     </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
+                    <button className=" 2xl:h-36 xl:h-32 lg:h-28 md:h-24 sm:h-16 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
                             Burger
                     </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-                    <button className="h-height w-full bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
-                            Burger
-                    </button>
-
+                   
+           
 
                     
                 </div>

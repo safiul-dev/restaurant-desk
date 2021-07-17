@@ -9,9 +9,9 @@ export default function OrderTable () {
                     <div className="h-4/5 mx-2 ">
                         <div className="h-full">
                             <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg flex justify-between pb-1">
-                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Ticket #<span className="bg-red rounded-md text-white lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span> </div>
-                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Order #<span className="bg-red rounded-md text-white lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
-                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Table: <span className="bg-red rounded-md text-white lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
+                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Ticket #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-tiny md:text-smallFont sm:text-extraSmall2">62</span> </div>
+                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Order #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-tiny md:text-smallFont sm:text-extraSmall2">621</span></div>
+                                <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Table: <span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-tiny md:text-smallFont sm:text-extraSmall2">621</span></div>
                             </div>
                             <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 flex justify-between">
                                 <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2">Status: <span className="bg-black rounded-md uppercase text-red 2xl:font-semibold xl:font-semibold lg:font-medium md:font-normal sm:font-light">uppaid</span></div>
