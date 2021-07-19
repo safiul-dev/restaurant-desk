@@ -1,26 +1,17 @@
 
 import Link from 'next/link';
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import AppLayout from '../../AppLayout/AppLayout';
 import {observer} from 'mobx-react'
 import {TableDatas} from './TableData';
 
+ const Index = observer(() => {
 
- class Index extends React.Component{
+    const [modal, setModal] = useState(false)
 
-    state= {
-        showModal: false,
-       }
 
-    constructor(props){
-        super(props);
-    }
-    componentDidMount () {
-        TableDatas.addData() 
-    }
-
-    Modal() {
-        if(this.state.showModal === false){
+    function Modal() {
+        if(!modal){
             return null;
         }
         
@@ -44,10 +35,10 @@ import {TableDatas} from './TableData';
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button onClick={() => this.saveModal()} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button onClick={() => saveModal()} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Save
                         </button>
-                        <button onClick={() => this.cancelModal()} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button onClick={() => cancelModal()} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                             Cancel
                         </button>
                     </div>
@@ -57,24 +48,21 @@ import {TableDatas} from './TableData';
         )
     }
 
-    saveModal() {
+   function saveModal() {
 
     }
 
-    cancelModal() {
-        this.setState({
-            showModal: false,
-        })
+   function cancelModal() {
+        setModal(false);
     }
 
-    openModal() {
+   function openModal() {
       
-        this.setState({
-            showModal: true
-        })
+       setModal(true);
     }
 
-    render() {
+    useEffect(() => {TableDatas.addData()})
+
         return (
         <React.Fragment>
             <AppLayout>
@@ -99,7 +87,7 @@ import {TableDatas} from './TableData';
                         <div className="h-height70% w-full bg-primary rounded">
                             <div className="w-full h-full overflow-y-auto">
                                 <div className="float-right pr-2 my-1 text-center">
-                                    <button onClick={this.openModal} className=" bg-gray text-white rounded-full px-2 uppercase hover:text-primary hover:bg-white">Add Table</button>
+                                    <button onClick={openModal} className=" bg-gray text-white rounded-full px-2 uppercase hover:text-primary hover:bg-white">Add Table</button>
                                 </div>
                                 <table className="bg-secondary w-width99% mx-auto my-1">
                                     <thead className="bg-gray text-white uppercase">
@@ -114,8 +102,7 @@ import {TableDatas} from './TableData';
                                     </thead>
 
                                     <tbody>
-                                        
-                                            {TableDatas.state.map( (list) => 
+                                        {TableDatas.data.map( (list) => 
                                             <tr className="border-white border" key={list.id}>
                                             <td className="border-white border text-center">{list.id}</td>
                                             <td className="border-white border text-center">{list.id}</td>
@@ -135,6 +122,7 @@ import {TableDatas} from './TableData';
                                                 </button>
                                             </td>
                                             </tr>)}
+                                            
                                        
                                     </tbody>
                                 </table>
@@ -153,15 +141,11 @@ import {TableDatas} from './TableData';
                 <div className="w-width3% bg-black h-full"></div>
                
             </div>
-            {this.state.showModal? this.Modal() : null}
+            {modal? Modal() : null}
             </AppLayout>
         </React.Fragment>
         )
-    }
- }
+    })
 
- export async function getStaticProps() {
-    
-    return { props: {} }
-  }
-export default observer(Index);
+export default Index;
+

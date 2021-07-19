@@ -13,10 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     </React.Fragment>
   )
 }
-export async function getStaticProps() {
-  console.log('[Node.js only] ENV_VARIABLE:', process.env.BASE_URL)
-  process.env.BASE_URL
-  return { props: {} }
-}
+
 export default MyApp;
 

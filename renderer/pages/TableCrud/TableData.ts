@@ -2,30 +2,36 @@ import { makeAutoObservable } from 'mobx';
 
 
 interface TableProps {
-    id: string;
-    title: string;
-    capacity: string;
-    status: boolean;
+  id: string;
+  uniq: string;  
+  userId: string;
+  storeId: string;
+  title: string;
+  capacity: string;
+  available_status: boolean;
 }
-class TableData { 
+class TableData{ 
 
-    state: TableProps[] = [];
+  
+      data: TableProps[] = [];
+    
+
 
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    addData() {
+   async addData() {
+      try {
+        const res = await fetch("http://localhost:3000/api/tables")
+      this.data = await res.json()
+      } catch (error) {
+        console.log(error)
+      }
+      
         
-        const data = {
-            id: "dkjfdksfjs",
-            title: "this is title",
-            capacity: "capacity",
-            status: true,
-        }
-        
-        this.state.push(data);
+
     }
 
     getData() {
@@ -34,18 +40,3 @@ class TableData {
 }
 
 export const TableDatas = new TableData();
-
-export async function getStaticProps(context) {
-    const res = await fetch()
-    const data = await res.json()
-  
-    if (!data) {
-      return {
-        notFound: true,
-      }
-    }
-  
-    return {
-      props: { data }, 
-    }
-  }
