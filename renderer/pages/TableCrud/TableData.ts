@@ -22,20 +22,24 @@ class TableData{
         makeAutoObservable(this)
     }
 
-   async addData() {
+   async getTables() {
       try {
         const res = await fetch("http://localhost:3000/api/tables")
       this.data = await res.json()
       } catch (error) {
         console.log(error)
       }
-      
-        
-
     }
 
-    getData() {
-        
+    addTable() {
+        try {
+          const res = fetch("http://localhost:3000/api/tables",{
+            method: "POST",
+            // contentType: "application/json"
+          })
+        } catch (error) {
+          
+        }
     }
 }
 
