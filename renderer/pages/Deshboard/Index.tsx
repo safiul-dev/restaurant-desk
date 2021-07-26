@@ -120,19 +120,18 @@ export default function Index() {
                                     </button>
                                 </div>
                                 <div className="w-full h-height33% flex">
+                                   <Link href="/Customer/Index">
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">
                                             <svg width="42" height="31" viewBox="0 0 42 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M22.2168 2.71364L25.1494 2.93074L22.9004 4.80315L23.584 7.63891L21.106 6.1057L18.6074 7.63891L19.3081 4.80315L17.0591 2.91717L19.9917 2.71364L21.1025 0L22.2168 2.71364ZM10.0864 31C10.1514 29.019 10.0386 28.9885 12.373 28.1235C13.7402 27.6113 15.4937 26.9668 16.7515 26.1901C18.2314 27.5469 19.1782 29.1038 19.2124 31H10.0864ZM18.1152 24.321C18.1802 23.819 16.6831 21.9161 16.4062 21.0002C15.8218 20.081 15.6133 18.8191 16.2524 17.8456C16.5054 17.4589 16.396 17.1367 16.396 16.6075C16.396 11.3057 25.7578 11.2989 25.7578 16.6075C25.7578 17.2859 25.604 17.4182 25.9697 17.944C26.585 18.8293 26.2671 20.1827 25.7476 20.9968C25.4058 21.9568 23.854 23.7715 23.96 24.3176C24.0522 27.0313 18.0879 26.9465 18.1084 24.3176L18.1152 24.321ZM32.1289 31C32.064 29.019 32.1768 28.9885 29.8423 28.1235C28.4751 27.6113 26.7217 26.9668 25.4639 26.1901C23.9839 27.5469 23.0371 29.1038 23.0029 31H32.1289ZM42.0068 13.0866L40.2056 15.3965L41.4839 18.022L38.7187 17.0349L36.5962 19.0701L36.6851 16.153L34.0942 14.7724L36.9141 13.9413L37.437 11.0683L39.0879 13.48L42.0034 13.0866H42.0068ZM34.0088 3.928L33.6157 6.82142L36.0459 8.46318L33.1543 8.9686L32.3203 11.7704L30.9326 9.19926L27.9932 9.28745L30.0269 7.18098L29.0288 4.43342L31.6777 5.70205L34.002 3.91104L34.0088 3.928ZM0 13.0899L2.91553 13.4834L4.56982 11.0717L5.09619 13.9413L7.91943 14.7588L5.32861 16.1394L5.41748 19.0566L3.2915 17.0213L0.522949 18.0084L1.80127 15.3796L0 13.0899ZM8.20312 3.91104L10.5273 5.69865L13.1763 4.43003L12.1851 7.1742L14.2358 9.28067L11.2793 9.19247L9.91211 11.7636L9.08838 8.96181L6.18994 8.44283L8.60303 6.78411L8.20312 3.91104Z" fill="white"/>
                                             </svg>
-
-
                                             </div>
                                             <div className=" ">customer</div>
                                         </div>
-                                    </button>
-                                    <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">placeholder1</button>
+                                    </button></Link>
+                                    <Link href="/Waiter/Index"><button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">Waiters</button></Link>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">placeholder2</button>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">placeholder3</button>
                                 </div>

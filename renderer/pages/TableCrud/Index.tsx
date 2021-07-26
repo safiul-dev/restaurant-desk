@@ -63,7 +63,7 @@ import {TableDatas} from './TableData';
     }
 
    function saveModal() {
-        console.log(title, capacity)
+        TableDatas.addTable(title, capacity)
         setModal(false)
     }
 

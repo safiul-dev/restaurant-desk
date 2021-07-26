@@ -31,15 +31,27 @@ class TableData{
       }
     }
 
-    addTable() {
-        try {
-          const res = fetch("http://localhost:3000/api/tables",{
-            method: "POST",
-            // contentType: "application/json"
+    async addTable(title, capacity) {
+      try {
+        const res = fetch("http://localhost:3000/api/tables",
+          {
+            body: JSON.stringify({
+                uniq: "dsfsdfsdf4544",
+                userId: "dffjdkfsd254",
+                storeId: "dsfsdfsdf4545",
+                title: title,
+                capacity: Number(capacity),
+                available_status: true
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: 'POST'
           })
-        } catch (error) {
           
-        }
+      } catch (error) {
+        console.log(error)
+      }
     }
 }
 
