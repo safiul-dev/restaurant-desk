@@ -13,9 +13,12 @@ interface WaiterProps {
 class WaiterData { 
 
     data: WaiterProps[] = [];
+    singleData: WaiterProps;
 
     constructor() {
+    
         makeAutoObservable(this)
+        
     }
 
     async getWaiters() {
@@ -26,10 +29,17 @@ class WaiterData {
           console.log(error)
         }
       }
-  
-      async addWaiter(name, phone, email, address,active) {
 
+    async getOne(id) {
+      try {
+        const res = await fetch("http://localhost:3000/api/waiter/"+id)
+        this.singleData = await res.json()
+      } catch (error) {
         
+      }
+    }
+  
+      async addWaiter(name, email, phone, address,active) {
         try {
           const res = fetch("http://localhost:3000/api/waiter",
             {
@@ -52,5 +62,38 @@ class WaiterData {
           console.log(error)
         }
       }
+      async updateWaiter(name, phone, email, address,active, id) {
+        try {
+          const res = fetch("http://localhost:3000/api/waiter/"+id,
+            {
+              body: JSON.stringify({
+                  name: name,
+                  phone: phone,
+                  email: email,
+                  address: address,
+                  active: active === "1"? true : false
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              method: 'PUT'
+            })
+            
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      async delete(id) {
+        try {
+          const res = fetch("http://localhost:3000/api/waiter/"+id,
+            {
+              method: 'DELETE'
+            })
+            
+        } catch (error) {
+          console.log(error)
+        }
+      }
 }
 export const WaiterDatas = new WaiterData();
+

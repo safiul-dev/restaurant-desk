@@ -15,7 +15,7 @@ class TableData{
   
       data: TableProps[] = [];
     
-
+      singleData: TableProps;
 
 
     constructor() {
@@ -28,6 +28,15 @@ class TableData{
       this.data = await res.json()
       } catch (error) {
         console.log(error)
+      }
+    }
+
+    async getOne(id) {
+      try {
+        const res = await fetch("http://localhost:3000/api/tables/"+id)
+        this.singleData = await res.json()
+      } catch (error) {
+        
       }
     }
 
@@ -47,6 +56,25 @@ class TableData{
               'Content-Type': 'application/json'
             },
             method: 'POST'
+          })
+          
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    async updateTable(title, capacity, id) {
+      try {
+        const res = await fetch("http://localhost:3000/api/tables/"+id,
+          {
+            body: JSON.stringify({
+                title: title,
+                capacity: capacity,
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: 'PUT'
           })
           
       } catch (error) {

@@ -5,6 +5,7 @@ module.exports = {
       middle1Bg: '#BCDDD4',
       primary: '#519E8A',
       secondary: '#BCDDD4',
+      yollow: '#808000',
       gray: '#A7A7A7',
       blue: '#007657',
       black: '#000000',
