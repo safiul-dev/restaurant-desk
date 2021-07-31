@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import AppLayout from '../AppLayout/AppLayout';
 import { loadEnvConfig } from '@next/env'
+
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
@@ -13,6 +14,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     </React.Fragment>
   )
 }
+
+
 
 export default MyApp;
 

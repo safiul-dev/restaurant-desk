@@ -174,7 +174,7 @@ class Index extends React.Component{
 
                         <div className="h-height70% w-full bg-primary rounded-md">
                                 <div className="float-right pr-2 my-1 text-center">
-                                   <button onClick={() => this.setState({modal: true})} className=" bg-gray text-white rounded-full px-2 font-bold tracking-widest uppercase hover:text-primary hover:bg-white">Add Table</button>
+                                   <button onClick={() => this.setState({modal: true})} className=" bg-gray text-white rounded-full px-2 font-bold tracking-widest uppercase hover:text-primary hover:bg-white">Add Customer</button>
                                 </div>
 
                                 <table className="bg-secondary w-width99% mx-auto my-1 overflow-y-auto">

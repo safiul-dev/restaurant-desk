@@ -38,18 +38,17 @@ export default function Index() {
                                             </div>
                                         </button>
                                     </Link>
+                                    <Link href="/Item/Index">
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">
                                             <svg width="23" height="21" viewBox="0 0 23 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path fillRule="evenodd" clipRule="evenodd" d="M20.7045 0.375H2.29545C1.16578 0.375 0.25 1.38236 0.25 2.625V4.875C0.25 6.11764 1.16578 7.125 2.29545 7.125H20.7045C21.8342 7.125 22.75 6.11764 22.75 4.875V2.625C22.75 1.38236 21.8342 0.375 20.7045 0.375ZM2.29545 9.375H20.7045C21.8342 9.375 22.75 10.3824 22.75 11.625V13.875C22.75 15.1176 21.8342 16.125 20.7045 16.125H2.29545C1.16578 16.125 0.25 15.1176 0.25 13.875V11.625C0.25 10.3824 1.16578 9.375 2.29545 9.375ZM2.5 11.625V13.875H20.5V11.625H2.5ZM2.5 2.625V4.875H20.5V2.625H2.5ZM13.75 18.375H0.25V20.625H13.75V18.375Z" fill="white"/>
                                             </svg>
-
-
                                             </div>
                                             <div className=" ">Items</div>
                                         </div>
-                                    </button>
+                                    </button></Link>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">

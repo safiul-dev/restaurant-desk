@@ -100,10 +100,9 @@ import { table } from 'console';
         <table className="bg-secondary w-full mx-auto my-1 overflow-y-auto">
         <thead className="bg-gray text-white uppercase">
              <tr className="border-white border">
-                <th className="border-white border w-width15% text-center">id</th>
-                <th className="border-white border w-width20% text-center">title</th>
+                
+                <th className="border-white border w-width65% text-center">title</th>
                  <th className="border-white border w-width15% text-center">Capacity</th>
-                 <th className="border-white border w-width30% text-center">userId</th>
                  <th className="border-white border w-width10% text-center">Status</th>
                  <th className="border-white border w-width10% text-center">Action</th>
              </tr>
@@ -113,10 +112,9 @@ import { table } from 'console';
              
                  {TableDatas != undefined ?TableDatas.data.map( (list) => 
                  <tr className="border-white border" key={list.id}>
-                 <td className="border-white border text-center">{list.id}</td>
+               
                  <td className="border-white border text-center">{list.title}</td>
                  <td className="border-white border text-center">{list.capacity}</td>
-                 <td className="border-white border text-center">{list.userId}</td>
                  <td className="border-white border text-center ">{list.available_status? <span className=" px-1 bg-primary rounded-full text-white">Active</span> : <span className=" px-1 bg-yollow rounded-full text-white">UnActive</span>}</td>
                  <td className="border-white border flex items-center justify-center">
                      <button onClick={() =>this.editTable(list.id)} className="text-primary hover:text-blue">
@@ -178,7 +176,7 @@ import { table } from 'console';
                             <div className="flex justify-between py-1">
 
                             
-                                <div className="flex">
+                                <div className="flex flex-row">
                                     <div onClick={() => this.setState({table: true})} className="mr-2 outline-none"> <svg  width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path fillRule="evenodd" clipRule="evenodd" d="M-3.21502e-05 12.5714L-3.24249e-05 15.7143L24.6428 15.7143L24.6428 12.5714L-3.21502e-05 12.5714ZM-3.18754e-05 9.42859L-3.16007e-05 6.28573L24.6428 6.28573L24.6428 9.42859L-3.18754e-05 9.42859ZM-3.13259e-05 3.14285L-3.10511e-05 -6.92272e-06L24.6428 -4.76837e-06L24.6428 3.14285L-3.13259e-05 3.14285Z" fill="#519E8A"/>
                                         </svg>
