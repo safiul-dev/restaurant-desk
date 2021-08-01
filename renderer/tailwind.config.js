@@ -69,6 +69,7 @@ module.exports = {
       },
 
       height: {
+        'h-30': '7.5rem',
         'leftberButtonHeight': '8%',
         'topHeight': '5%',
         'middleHeight': '90%',
@@ -128,6 +129,7 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss"),
-       require("autoprefixer")
+    require("autoprefixer"),
+    require('tailwind-scrollbar-hide')
   ],
 };

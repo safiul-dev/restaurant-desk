@@ -1,9 +1,9 @@
 import React, { Component, Props, useState } from 'react';
 import CategoryRightbar1 from '../../components/Order/OrderRightbar/Category/CategoryRightbar';
 import Payment from '../../components/Order/OrderRightbar/Payment/Payment';
-import LeftbarButtons from '../../components/Order/OrderLeftbarButtons/LeftbarButtons';
-import Table from '../../components/Order/OrderTable/Table';
-import TotalButton from '../../components/Buttons/middle1TotalButon';
+import LeftbarButtons from '../../components/Order/Buttons/OrderLeftbarButtons/LeftbarButtons';
+import Table from '../../components/Order/OrderLertbar/Table';
+import TotalButton from '../../components/Order/Buttons/TotalBill';
 import AppLayout from '../../AppLayout/AppLayout';
 
 

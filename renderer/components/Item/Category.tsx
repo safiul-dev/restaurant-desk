@@ -83,7 +83,7 @@ const Category = observer((props) => {
     }
     return (
         <div>
-            {CategoryDatas.data.length != 0 ? 
+            {!!CategoryDatas.data.length ? 
             
              <table className="bg-secondary w-width99% mx-auto my-1 overflow-y-auto">
                 <thead className="bg-gray text-white uppercase">
@@ -128,6 +128,7 @@ const Category = observer((props) => {
                             <th className="border-white border w-width10% text-center">Action</th>
                         </tr>
                     </thead>
+                    <tbody></tbody>
                 </table>
 
                 <div className="flex justify-center items-center h-full">

@@ -13,6 +13,7 @@ class CategoryData {
 
     data: CategroyProps[] = [];
     singleData: CategroyProps;
+    activeData: CategroyProps[] = [];
     modal: boolean;
     constructor() {
     
@@ -37,14 +38,24 @@ class CategoryData {
         
       }
     }
+
+    async getActiveCategory () {
+      try {
+        const res = await fetch("http://localhost:3000/api/categorys/active")
+        this.activeData = await res.json()
+      } catch (error) {
+        
+      }
+    }
   
       async addCategory(title, active) {
+        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
         try {
           const res = fetch("http://localhost:3000/api/categorys",
             {
               body: JSON.stringify({
-                  uniq: "dsfsdfsdf4544",
-                  userId: "dffjdkfsd254",
+                  uniq: uniq,
+                  userId: "user1",
                   parent: "this_Parent_Id",
                   title: title,
                   active: active === "1"? true : false

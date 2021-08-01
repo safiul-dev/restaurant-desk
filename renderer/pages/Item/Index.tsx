@@ -3,9 +3,9 @@ import { observer } from "mobx-react";
 import react, { Component } from "react";
 import AppLayout from '../../AppLayout/AppLayout';
 import Category from "../../components/Item/Category";
-import Item from "../../components/Item/item";
 import { ItemDatas } from "./ItemData";
 import { CategoryDatas } from './CategoryData';
+import Item from "../../components/Item/Item";
 
 type P = {
     
@@ -18,6 +18,7 @@ type IndexState = {
     description: string,
     price: string,
     active: string,
+    categoryUniq: string,
     moduleName: string,
 };
 
@@ -28,6 +29,7 @@ class Index extends Component<P, IndexState> {
         title: '',
         description: '',
         price: '',
+        categoryUniq: '',
         active: "1",
 
         moduleName: "Add Item",
@@ -40,6 +42,7 @@ class Index extends Component<P, IndexState> {
     componentDidMount() {
         ItemDatas.getItems()
         CategoryDatas.getCategroy()
+        CategoryDatas.getActiveCategory()
     }
      Modal() {
         if(!this.state.modal){
@@ -73,6 +76,15 @@ class Index extends Component<P, IndexState> {
                                     <div className="">
                                         <label className="tracking-widest font-semibold mb-2">Price:</label>
                                         <input type="text" value={this.state.price}onChange={(e) => this.setState({price: e.target.value})} name="title" className="h-8 px-2 w-full rounded-md border border-gray outline-none" />
+                                    </div>
+
+                                    <div className="">
+                                        <label className="tracking-widest font-semibold mb-2">Categorys:</label>
+                                        <select className="h-8 px-2 w-full rounded-md border border-gray outline-none" name="status" onChange={(e) => this.setState({categoryUniq: e.target.value})} >
+                                            {CategoryDatas.activeData.map((category) =>
+                                               <option key={category.id} value={category.uniq}>{category.title}</option>
+                                            )}
+                                        </select>
                                     </div>
 
                                     <div className="">
@@ -122,13 +134,26 @@ class Index extends Component<P, IndexState> {
     async saveModal () {
         if(this.state.table) {
             
-            await ItemDatas.addItem(this.state.title, this.state.description, this.state.price, this.state.active)
+            await ItemDatas.addItem(this.state.title, this.state.description,this.state.categoryUniq, this.state.price, this.state.active)
             await ItemDatas.getItems()
-            this.setState({modal: false})
+            this.setState({ 
+                title: '',
+                description: '',
+                categoryUniq: '',
+                price: '',
+                active: '1',
+                modal: false
+            })
+            
         }else{
            await CategoryDatas.addCategory(this.state.title, this.state.active)
            await CategoryDatas.getCategroy()
-           this.setState({modal: false})
+           this.setState({
+               title: '',
+               active: '1',
+               modal: false
+           })
+           
         
         }
     }

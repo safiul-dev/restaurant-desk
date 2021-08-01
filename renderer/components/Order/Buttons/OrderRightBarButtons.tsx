@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function RightButton (props) {
+export default function CategoryButton (props) {
 
     return (
         <button  className="w-full bg-primary rounded h-height10% flex justify-center items-center mt-1">

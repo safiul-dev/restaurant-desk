@@ -40,11 +40,12 @@ class WaiterData {
     }
   
       async addWaiter(name, email, phone, address,active) {
+        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
         try {
           const res = fetch("http://localhost:3000/api/waiter",
             {
               body: JSON.stringify({
-                  uniq: "dsfsdfsdf4544",
+                  uniq: uniq,
                   userId: "dffjdkfsd254",
                   name: name,
                   phone: phone,

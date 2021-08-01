@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-interface CustomerProps {
+interface OrderProps {
     id: string;
     uniq: string;
     userId: string;
@@ -10,10 +10,10 @@ interface CustomerProps {
     address: string;
     active: boolean;
 }
-class CustomerData { 
+class OrderData { 
 
-    data: CustomerProps[] = [];
-    singleData: CustomerProps;
+    data: OrderProps[] = [];
+    singleData: OrderProps;
 
     constructor() {
     
@@ -40,13 +40,12 @@ class CustomerData {
     }
   
       async addCustomer(name, email, phone, address,active) {
-        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
         try {
           const res = fetch("http://localhost:3000/api/customers",
             {
               body: JSON.stringify({
-                  uniq: uniq,
-                  userId: "user1",
+                  uniq: "dsfsdfsdf4544",
+                  userId: "dffjdkfsd254",
                   name: name,
                   phone: phone,
                   email: email,
@@ -96,4 +95,4 @@ class CustomerData {
         }
       }
 }
-export const CustomerDatas = new CustomerData();
+export const OrderDatas = new OrderData();

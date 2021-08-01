@@ -1,6 +1,6 @@
 
 import Table from "./Table"
-import TotalButton from '../../Buttons/middle1TotalButon';
+import TotalButton from '../Buttons/TotalBill';
 export default function OrderTable () {
     return (
         <div className="w-full h-full"> 

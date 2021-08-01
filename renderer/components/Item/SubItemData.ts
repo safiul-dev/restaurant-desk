@@ -1,19 +1,19 @@
 import { makeAutoObservable } from "mobx";
 
-interface ItemProps {
+interface SubItemProps {
     id: string;
     uniq: string;
     title: string,
     description: string,
     price: string,
-    categoryUniq: string,
-    active: string,
+    ratio: string,
+    itemUniq: string,
     
 }
-class ItemData { 
+class SubItemData { 
 
-    data: ItemProps[] = [];
-    singleData: ItemProps;
+    data: SubItemProps[] = [];
+    singleData: SubItemProps;
 
     constructor() {
     
@@ -22,9 +22,19 @@ class ItemData {
     }
 
 
-    async getItems() {
+    async getSubItems(ItemId: string) {
         try {
-          const res = await fetch("http://localhost:3000/api/items")
+          const res = await fetch("http://localhost:3000/api/items/sub/itemUniq",
+          {
+            body: JSON.stringify({
+                id: ItemId
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: 'GET'
+          }
+          )
         this.data = await res.json()
        
 
@@ -104,4 +114,4 @@ class ItemData {
 
 
 }
-export const ItemDatas = new ItemData();
+export const SubItemDatas = new SubItemData();

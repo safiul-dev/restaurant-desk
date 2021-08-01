@@ -41,11 +41,12 @@ class TableData{
     }
 
     async addTable(title, capacity) {
+      const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
       try {
         const res = fetch("http://localhost:3000/api/tables",
           {
             body: JSON.stringify({
-                uniq: "dsfsdfsdf4544",
+                uniq: uniq,
                 userId: "dffjdkfsd254",
                 storeId: "dsfsdfsdf4545",
                 title: title,
