@@ -13,6 +13,8 @@ interface SubItemProps {
 class SubItemData { 
 
     data: SubItemProps[] = [];
+    itemIdByAllData: SubItemProps[] = [];
+    itemIdByAllData2: SubItemProps[] = [];
     singleData: SubItemProps;
 
     constructor() {
@@ -21,6 +23,14 @@ class SubItemData {
         
     }
 
+    async getAllSubItems() {
+      try {
+        const res = await fetch("http://localhost:3000/api/items/sub")
+      this.data = await res.json()
+      } catch (error) {
+        console.log(error)
+      }
+    }
 
     async getSubItems(ItemId: string) {
         try {
@@ -32,10 +42,10 @@ class SubItemData {
             headers: {
               'Content-Type': 'application/json'
             },
-            method: 'GET'
+            method: 'POST'
           }
           )
-        this.data = await res.json()
+        this.itemIdByAllData2 = await res.json()
        
 
         } catch (error) {
@@ -43,64 +53,76 @@ class SubItemData {
         }
       }
 
-    async getOne(id) {
-      try {
-        const res = await fetch("http://localhost:3000/api/items/"+id)
-        this.singleData = await res.json()
-      } catch (error) {
+    // async getOne(id) {
+    //   try {
+    //     const res = await fetch("http://localhost:3000/api/items/"+id)
+    //     this.singleData = await res.json()
+    //   } catch (error) {
         
-      }
-    }
+    //   }
+    // }
   
-      async addItem(title, description, categoryUniq, price,active) {
+      async addSubItem(title, description, price,ratio, itemUniq) {
         const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
         try {
-          const res = fetch("http://localhost:3000/api/items",
+          const res = fetch("http://localhost:3000/api/items/sub",
             {
               body: JSON.stringify({
                   uniq: uniq,
-                  userId: "user1",
                   title: title,
                   price: price,
                   description: description,
-                  categoryUniq: categoryUniq,
-                  active: active === "1"? true : false
+                  ratio: ratio,
+                  itemUniq: itemUniq,
               }),
               headers: {
                 'Content-Type': 'application/json'
               },
               method: 'POST'
             })
+            if(res) {
+
+            }
             
         } catch (error) {
           console.log(error)
         }
       }
-      async updateItem(title: string, description: string, categoryUniq: string, price: string, active: string, id: string) {
+      async updateSubItem(title: string, description: string, price: string, ratio: string, id: string, uniq: string, itemUniq: string) {
+        
         try {
-          const res = fetch("http://localhost:3000/api/items/"+id,
+          const res = fetch("http://localhost:3000/api/items/sub/"+id,
             {
               body: JSON.stringify({
                 
                 title: title,
-                price: price,
                 description: description,
-                categoryUniq: categoryUniq,
-                active: active === "1"? true : false
+                price: price,
+                ratio: ratio,
               }),
               headers: {
                 'Content-Type': 'application/json'
               },
               method: 'PUT'
             })
-            
+            if(res) {
+              this.data.push({
+                id: id,
+                uniq: uniq,
+                title: title,
+                description: description,
+                price: price,
+                ratio: ratio,
+                itemUniq: itemUniq,
+              })
+            }
         } catch (error) {
           console.log(error)
         }
       }
       async delete(id) {
         try {
-          const res = fetch("http://localhost:3000/api/items/"+id,
+          const res = fetch("http://localhost:3000/api/items/sub/"+id,
             {
               method: 'DELETE'
             })

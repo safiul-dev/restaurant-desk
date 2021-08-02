@@ -6,6 +6,7 @@ import Category from "../../components/Item/Category";
 import { ItemDatas } from "./ItemData";
 import { CategoryDatas } from './CategoryData';
 import Item from "../../components/Item/Item";
+import { SubItemDatas } from "../../components/Item/SubItemData";
 
 type P = {
     
@@ -43,6 +44,7 @@ class Index extends Component<P, IndexState> {
         ItemDatas.getItems()
         CategoryDatas.getCategroy()
         CategoryDatas.getActiveCategory()
+        SubItemDatas.getAllSubItems()
     }
      Modal() {
         if(!this.state.modal){

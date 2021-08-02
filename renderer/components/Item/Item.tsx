@@ -4,7 +4,6 @@ import { ItemDatas } from '../../pages/Item/ItemData';
 import { CategoryDatas } from '../../pages/Item/CategoryData';
 import React from 'react';
 import { SubItemDatas } from './SubItemData';
-
  
 class Item extends React.Component{
 
@@ -15,71 +14,138 @@ class Item extends React.Component{
         price: '',
         categoryUniq: '',
         active: '1',
-        ratio: '',
+        ratio: '1:1',
         modal: false,
+        // subItem section here below
+        isSubItemEditOption: false,
+        ItemUniq: '',
+        subUniq: '',
         subItemModal: false,
         edit: true,
-        contentEditable: false,
         editId: '',
         tr: null,
         thisKey: this
     }
+
+    // Modal showing for Sub Item Adding and editing and deleting using Item Uniq 
+    async subItemShow (itemUniq, id) {
+        ItemDatas.data.find(item => {
+            if(item.id === id){
+                this.setState({
+                    isSubItemEditOption: true,
+                    ItemUniq: itemUniq,
+                    title: item.title,
+                    description: item.description,
+                    price: item.price,
+                    
+                });
+            }
+        })
+        
+        if(!!SubItemDatas.data.length) {
+            SubItemDatas.data.find( (subItem) => {
+                if(subItem.itemUniq === itemUniq) {
+                    SubItemDatas.itemIdByAllData.push(subItem)
+                   
+                } 
+               
+            } );
+        }
+
+        this.setState({
+            subItemModal: true,
+            modal: true
+        })
+
+    }
+
+
+    // editing SubItem By Id  
     editSubItem (id) {
-        this.setState({edit: false, contentEditable: true, editId: id});
+        SubItemDatas.itemIdByAllData.find(item => {if(item.id === id){
+            this.setState({
+                title: item.title,
+                description: item.description,
+                ratio: item.ratio,
+                price: item.price,
+                subUniq: item.uniq
+            })
+        }})
+        this.setState({edit: false, editId: id});
     }
 
-    editOrSave(id) {
-        console.log(id)
-        if(this.state.editId === id) {
-            return "Save"
-        }else{
-            return "Edit"
-        }
-       
+
+    async saveSubItem (id) {
+        
+        await SubItemDatas.updateSubItem(this.state.title, this.state.description, this.state.price, this.state.ratio, id, this.state.subUniq, this.state.ItemUniq)
+        await SubItemDatas.getSubItems(this.state.ItemUniq)
+        await SubItemDatas.getAllSubItems()
+        this.setState({edit: true,  editId: ''});
     }
 
-    saveSubItem (id) {
-        this.setState({edit: true, contentEditable: false, editId: ''});
-    }
+    async addNewSubItem (itemUniq) {
+        
+        await SubItemDatas.addSubItem(this.state.title, this.state.description, this.state.price, this.state.ratio, itemUniq)
+        await SubItemDatas.getAllSubItems()
 
-    addNewSubItem () {
-
-    }
-
-    deleteSubItem (id, list) {
-        if(id === null && list === null) {
-            this.setState({tr:null})
-        }
-    }
-
-    addNewTr (value) {
-        value.setState({
-            tr: <tr className="border-white border overflow-x-visible" >
-            <td className="border-white border text-center"  ><input type="text" className="" /> </td>
-            <td className="border-white border text-center" ><input type="text" className="" /> </td>
-            <td className="border-white border text-center" ><input type="text" className="" /> </td>
-            <td className="border-white border text-center "> <span className=" px-1 bg-primary rounded-full text-white">Active</span> </td>
+        this.setState({ tr:
+        <tr className="border-white border overflow-x-visible" >
+            <td className="border-white border text-center"  >{this.state.title}</td>
+            <td className="border-white border text-center" >{this.state.description} </td>
+            <td className="border-white border text-center" >{this.state.price} </td>
+            <td className="border-white border text-center "> {this.state.ratio} </td>
             <td className="border-white border text-center">
                 <div className="flex flex-row justify-center items-center">
 
-                
-                
-                <button onClick={() => this.addNewSubItem()} className="text-primary hover:text-blue">
-                    Save
+                <button onClick={() => this.cancelModal()} className="text-primary hover:text-blue">
+                    Reload
                 </button>
-                <button onClick={() => this.deleteSubItem(null, null)} className="text-red hover:text-red-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                </button>
+                
                 </div>
             </td>
-        </tr>
+         </tr>
         })
-    }
-    Tr() {
 
     }
+
+    async deleteSubItem (id, list) {
+        if(id === null && list === null) {
+            this.setState({tr:null})
+        }else{
+            await SubItemDatas.delete(id)
+            await SubItemDatas.getAllSubItems()
+            const index = SubItemDatas.itemIdByAllData.indexOf(list)
+            SubItemDatas.itemIdByAllData.splice(index, 1)
+        }
+    }
+
+    addNewTr (self) {
+        
+        self.setState({
+            tr: 
+            <tr className="border-white border overflow-x-visible" >
+                <td className="border-white border text-center"  ><input type="text" defaultValue={this.state.title} onChange={(e) => this.setState({title: e.target.value})} className="outline-none" /> </td>
+                <td className="border-white border text-center" ><input type="text" defaultValue={this.state.description} onChange={(e) => this.setState({description: e.target.value})} className="outline-none" /> </td>
+                <td className="border-white border text-center" ><input type="text" defaultValue={this.state.price} onChange={(e) => this.setState({price: e.target.value})} className="outline-none" /> </td>
+                <td className="border-white border text-center "> <input type="text" defaultValue={this.state.ratio} onChange={(e) => this.setState({ratio: e.target.value})} className="outline-none" /> </td>
+                <td className="border-white border text-center">
+                    <div className="flex flex-row justify-center items-center">
+
+                    <button onClick={() => this.addNewSubItem(this.state.ItemUniq)} className="text-primary hover:text-blue">
+                        Save
+                    </button>
+                    <button onClick={() => this.deleteSubItem(null, null)} className="text-red hover:text-red-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                    </div>
+                </td>
+            </tr>
+        
+        })
+    }
+    
      Modal() {
         if(!this.state.modal){
             return null;
@@ -98,8 +164,12 @@ class Item extends React.Component{
                     <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         {this.state.subItemModal?
                         <div className="w-full h-full">
-                            <button onClick={() => this.addNewTr(this)}>Add</button>
-                                    {!!ItemDatas.data.length?
+                            <div className="flex flex-row justify-between">
+                                <h1 className="text-primary font-bold">Sub Item</h1>
+                                <button className="text-primary hover:text-blue" onClick={() => this.addNewTr(this)}>Add New</button>
+                            </div>
+                            
+                                    {!!SubItemDatas.itemIdByAllData.length?
                                     <div className="overflow-x-auto overflow-y-auto">
 
                                    
@@ -109,28 +179,28 @@ class Item extends React.Component{
                                                 <th className="border-white border w-width20% text-center">Title</th>
                                                 <th className="border-white border w-width35% text-center">Description</th>
                                                     <th className="border-white border w-width20% text-center">Price</th>
-                                                    <th className="border-white border w-width10% text-center">Status</th>
+                                                    <th className="border-white border w-width10% text-center">Ratio</th>
                                                     <th className="border-white border w-width15% text-center">Action</th>
                                                 </tr>
                                             </thead>
 
                                     <tbody>
                     
-                                        { ItemDatas.data.map( (list) => 
-                                        <tr className="border-white border overflow-x-visible" key={list.id}>
-                                            <td className="border-white border text-center"  >{this.state.editId === list.id?<input type="text" className="" defaultValue={list.title}/> : list.title}</td>
-                                            <td className="border-white border text-center" >{this.state.editId === list.id?<input type="text" className="" defaultValue={list.description}/> : list.title}</td>
-                                            <td className="border-white border text-center" >{this.state.editId === list.id?<input type="text" className="" defaultValue={list.title}/> : list.title}</td>
-                                            <td className="border-white border text-center ">{list.active? <span className=" px-1 bg-primary rounded-full text-white">Active</span> : <span className=" px-1 bg-yollow rounded-full text-white">UnActive</span>}</td>
+                                        { SubItemDatas.itemIdByAllData.map( (list, index) => 
+                                        <tr className="border-white border overflow-x-visible" key={index}>
+                                            <td className="border-white border text-center"  >{this.state.editId === list.id?<input type="text" className="" onChange={(e) => this.setState({title: e.target.value})} defaultValue={this.state.title}/> : list.title}</td>
+                                            <td className="border-white border text-center" >{this.state.editId === list.id?<input type="text" className="" onChange={(e) => this.setState({description: e.target.value})} defaultValue={this.state.description}/> : list.description}</td>
+                                            <td className="border-white border text-center" >{this.state.editId === list.id?<input type="text" className="" onChange={(e) => this.setState({price: e.target.value})} defaultValue={this.state.price}/> : list.price}</td>
+                                            <td className="border-white border text-center "> {this.state.editId === list.id?<input type="text" className="" onChange={(e) => this.setState({ratio: e.target.value})} defaultValue={this.state.ratio}/> : list.ratio}
+
+                                            </td>
+                                            
                                             <td className="border-white border text-center">
                                                 <div className="flex flex-row justify-center items-center">
-
-                                                
-                                                
                                                 <button onClick={() => {this.state.edit?this.editSubItem(list.id) : this.saveSubItem(list.id)}} className="text-primary hover:text-blue">
-                                                    {this.state.editId === list.id? "Save" : "Edit" }
+                                                    {this.state.editId === list.id? "Update" : "Edit" }
                                                 </button>
-                                                <button onClick={() => this.deleteItem(list.id, list)} className="text-red hover:text-red-300">
+                                                <button onClick={() => this.deleteSubItem(list.id, list)} className="text-red hover:text-red-300">
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
@@ -148,22 +218,22 @@ class Item extends React.Component{
                         
                             : 
                                                 
-                        <div className="w-full h-full">
+                        <div className="w-full overflow-x-auto overflow-y-auto h-full">
                             <table className="bg-secondary w-width99% mx-auto my-1 overflow-y-auto">
                                 <thead className="bg-gray text-white uppercase">
                                     <tr className="border-white border">
                                     <th className="border-white border w-width15% text-center">Title</th>
                                     <th className="border-white border w-width45% text-center">Description</th>
                                         <th className="border-white border w-width20% text-center">Price</th>
-                                        <th className="border-white border w-width10% text-center">Status</th>
+                                        <th className="border-white border w-width10% text-center">Ratio</th>
                                         <th className="border-white border w-width10% text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                {this.state.tr}
+                                </tbody>
                             </table>
-                                <div className="flex justify-center items-center">
-                                    <h1 className="text-center text-secondary font-extrabold text-xl">Data Not Found</h1>
-                                </div>
+                                
                                 
                         </div>
                     
@@ -206,10 +276,11 @@ class Item extends React.Component{
                         }
                      </div>   
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    
+                        {this.state.isSubItemEditOption? null :
                         <button onClick={() => this.updateModal(this.state.itemId)} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Update
                         </button> 
+                        }
                         <button onClick={() => this.cancelModal()} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                             Cancel
                         </button>
@@ -227,18 +298,25 @@ class Item extends React.Component{
     }
     
      cancelModal() {
+         const indexHas = []
+         
+        SubItemDatas.itemIdByAllData.map((item, index) =>  indexHas.push(index))
+        for (let i=0; i<indexHas.length; i++) {
+            SubItemDatas.itemIdByAllData.pop()
+        }
         this.setState({
+            title: '',
+            description: '',
+            price: '',
+            ratio: '1:1',
+            subUniq: '',
+            tr: null,
+            editId: '',
+            isSubItemEditOption: false,
             subItemModal:false,
             modal: false})
     }
-    async subItemShow (id) {
-        await SubItemDatas.getSubItems(id)
-        this.setState({
-            subItemModal: true,
-            modal: true
-        })
 
-    }
     
      editItems (id) {
        ItemDatas.data.find((item) => {if(item.id === id) {
@@ -289,7 +367,7 @@ class Item extends React.Component{
                                     <div className="flex flex-row justify-center items-center">
 
                                     
-                                    <button onClick={() => this.subItemShow(list.uniq)} className="outline-none h-6 w-6 mx-2 text-primary font-bold hover:text-blue">
+                                    <button onClick={() => this.subItemShow(list.uniq, list.id)} className="outline-none h-6 w-6 mx-2 text-primary font-bold hover:text-blue">
                                         Sub
                                     </button>
                                     <button onClick={() => this.editItems(list.id)} className="text-primary hover:text-blue">
