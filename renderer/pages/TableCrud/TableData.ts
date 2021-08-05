@@ -2,7 +2,6 @@ import { makeAutoObservable } from 'mobx';
 
 
 interface TableProps {
-  id: string;
   uniq: string;  
   userId: string;
   storeId: string;
@@ -40,43 +39,65 @@ class TableData{
       }
     }
 
-    async addTable(title, capacity) {
-      const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+    async addTable(uniq, userId, storeId,title, capacity, status) {
+
       try {
         const res = fetch("http://localhost:3000/api/tables",
           {
             body: JSON.stringify({
                 uniq: uniq,
-                userId: "dffjdkfsd254",
-                storeId: "dsfsdfsdf4545",
+                userId: userId,
+                storeId: storeId,
                 title: title,
                 capacity: Number(capacity),
-                available_status: true
+                available_status: status
             }),
             headers: {
               'Content-Type': 'application/json'
             },
             method: 'POST'
           })
+
+          if(res) {
+            this.data.push({
+              uniq: uniq,
+              userId: userId,
+              storeId: storeId,
+              title: title,
+              capacity: capacity,
+              available_status: status
+            })
+          }
           
       } catch (error) {
         console.log(error)
       }
     }
 
-    async updateTable(title, capacity, id) {
+    async updateTable(title, capacity, status, uniq) {
       try {
-        const res = await fetch("http://localhost:3000/api/tables/"+id,
+        const res = await fetch("http://localhost:3000/api/tables/"+uniq,
           {
             body: JSON.stringify({
                 title: title,
                 capacity: capacity,
+                available_status: status
             }),
             headers: {
               'Content-Type': 'application/json'
             },
             method: 'PUT'
           })
+
+          if(res) {
+            this.data.find((table) =>{
+              if(table.uniq === uniq) {
+                table.title = title;
+                table.capacity = capacity;
+                table.available_status = status;
+              }
+            })
+          }
           
       } catch (error) {
         console.log(error)

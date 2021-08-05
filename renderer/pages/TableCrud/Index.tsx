@@ -1,19 +1,20 @@
 
 import Link from 'next/link';
-import React, { Component, useEffect, useState } from 'react'
+import React from 'react'
 import AppLayout from '../../AppLayout/AppLayout';
 import {observer} from 'mobx-react'
 import { TableDatas } from './TableData';
-import { table } from 'console';
+
 
  class Index extends React.Component{
 
     state = {
+        uniqId: '',
         modal: false,
         title: '',
         capacity: '',
         table: false,
-        tableId: null
+
     }
     constructor (props) {
         super(props);
@@ -60,8 +61,8 @@ import { table } from 'console';
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    {this.state.tableId != null?
-                            <button onClick={() => this.updateModal(this.state.tableId)} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    {this.state.uniqId != ''?
+                            <button onClick={() => this.updateModal(this.state.uniqId)} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Updaed
                             </button> 
                             : 
@@ -80,20 +81,27 @@ import { table } from 'console';
     }
 
     saveModal() {
-        TableDatas.addTable(this.state.title, this.state.capacity)
-        TableDatas.getTables()
+        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+        TableDatas.addTable(uniq, "user1","store1", this.state.title, this.state.capacity, true)
         this.setState({modal: false})
     }
 
-   async updateModal (id) {
-        await TableDatas.updateTable(this.state.title, this.state.capacity, id)
-        await TableDatas.getTables()
+   async updateModal (uniqId) {
+        await TableDatas.updateTable(this.state.title, this.state.capacity, true, uniqId)
         this.setState({modal: false})
     }
 
     cancelModal() {
         this.setState({modal: false})
     }
+
+    resetForm() {
+        this.setState({
+            uniqId: '',
+            title: '',
+            capacity: '',  
+        })
+     }
 
  showTable () {
      return (
@@ -110,14 +118,14 @@ import { table } from 'console';
 
          <tbody>
              
-                 {TableDatas != undefined ?TableDatas.data.map( (list) => 
-                 <tr className="border-white border" key={list.id}>
+                 {TableDatas != undefined ?TableDatas.data.map( (list, index) => 
+                 <tr className="border-white border" key={index}>
                
                  <td className="border-white border text-center">{list.title}</td>
                  <td className="border-white border text-center">{list.capacity}</td>
                  <td className="border-white border text-center ">{list.available_status? <span className=" px-1 bg-primary rounded-full text-white">Active</span> : <span className=" px-1 bg-yollow rounded-full text-white">UnActive</span>}</td>
                  <td className="border-white border flex items-center justify-center">
-                     <button onClick={() =>this.editTable(list.id)} className="text-primary hover:text-blue">
+                     <button onClick={() =>this.editTable(list.uniq)} className="text-primary hover:text-blue">
                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                          </svg>
@@ -135,18 +143,16 @@ import { table } from 'console';
      )
  }
 
-   async editTable (id) {
+   async editTable (uniq) {
             
-            const table = TableDatas.data.find((table, index) => {if(table.id === id){
+            TableDatas.data.find((table, index) => {if(table.uniq === uniq){
                 this.setState({
-                    tableId: table.id,
+                    uniqId: table.uniq,
                     title: table.title,
                     capacity: table.capacity,
                     modal: true,
                 })
             }})
-
-
 
     }
 
@@ -211,10 +217,10 @@ import { table } from 'console';
                                     :
 
                                     <div className="grid grid-flow-row grid-cols-6 gap-2">
-                                {TableDatas != undefined ?TableDatas.data.map( (list) => 
+                                {TableDatas != undefined ?TableDatas.data.map( (list, index) => 
                                   (
                                     list.available_status?
-                                    <div key={list.id} className="2xl:h-40 xl:h-32 lg:h-28 md:h-24 sm:h-20 h-16 flex justify-center items-center bg-primary rounded-md hover:shadow-2xl">
+                                    <div key={index} className="2xl:h-40 xl:h-32 lg:h-28 md:h-24 sm:h-20 h-16 flex justify-center items-center bg-primary rounded-md hover:shadow-2xl">
                                         <div>
                                             <h1 className="uppercase text-white text-center 2xl:text-xl xl:text-lg lg:text-base md:text-tiny sm:text-tiny 2xl:font-bold xl:font-semibold lg:font-mediam md:font-normal sm:font-normal tracking-wide">{list.title}</h1>
                                             <h1 className="uppercase text-white text-center 2xl:text-base xl:text-base lg:text-base md:text-base sm:text-tiny 2xl:font-medium xl:font-medium lg:font-medium md:font-medium sm:font-normal tracking-wider">Capacity : <span className="uppercase text-white 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal tracking-wide ">{list.capacity}</span> </h1>
@@ -224,7 +230,7 @@ import { table } from 'console';
 
                                     :
 
-                                    <div key={list.id} className="2xl:h-40 xl:h-32 lg:h-28 md:h-24 sm:h-20 h-16 flex justify-center items-center bg-secondary rounded-md hover:shadow-2xl">
+                                    <div key={index} className="2xl:h-40 xl:h-32 lg:h-28 md:h-24 sm:h-20 h-16 flex justify-center items-center bg-secondary rounded-md hover:shadow-2xl">
                                         <div>
                                             <h1 className="uppercase text-white text-center 2xl:text-xl xl:text-lg lg:text-base md:text-tiny sm:text-tiny 2xl:font-bold xl:font-semibold lg:font-mediam md:font-normal sm:font-normal tracking-wide">{list.title}</h1>
                                             <h1 className="uppercase text-white text-center 2xl:text-base xl:text-base lg:text-base md:text-base sm:text-tiny 2xl:font-medium xl:font-medium lg:font-medium md:font-medium sm:font-normal tracking-wider">Capacity : <span className="uppercase text-white 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal tracking-wide ">{list.capacity}</span> </h1>

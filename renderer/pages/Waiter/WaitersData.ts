@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
 interface WaiterProps {
-    id: string;
     uniq: string;
     userId: string;
     name: string;
@@ -39,14 +38,14 @@ class WaiterData {
       }
     }
   
-      async addWaiter(name, email, phone, address,active) {
-        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+      async addWaiter(uniq, userId, name, email, phone, address,active) {
+
         try {
           const res = fetch("http://localhost:3000/api/waiter",
             {
               body: JSON.stringify({
                   uniq: uniq,
-                  userId: "dffjdkfsd254",
+                  userId: userId,
                   name: name,
                   phone: phone,
                   email: email,
@@ -58,14 +57,25 @@ class WaiterData {
               },
               method: 'POST'
             })
+
+            if(res) {
+              this.data.push({
+                uniq: uniq,
+                userId: userId,
+                name: name,
+                phone: phone,
+                email: email,
+                address: address,
+                active: active === "1"? true : false
+              })}
             
         } catch (error) {
           console.log(error)
         }
       }
-      async updateWaiter(name, phone, email, address,active, id) {
+      async updateWaiter(name, email, phone , address,active, uniq) {
         try {
-          const res = fetch("http://localhost:3000/api/waiter/"+id,
+          const res = fetch("http://localhost:3000/api/waiter/"+uniq,
             {
               body: JSON.stringify({
                   name: name,
@@ -79,6 +89,17 @@ class WaiterData {
               },
               method: 'PUT'
             })
+            if(res) {
+              this.data.find( customer => {
+                if(customer.uniq === uniq) {
+                  customer.name = name;
+                  customer.phone = phone;
+                  customer.email = email;
+                  customer.address = address;
+                  customer.active = active === "1"? true : false;
+                }
+              })
+            }
             
         } catch (error) {
           console.log(error)

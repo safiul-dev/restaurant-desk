@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
 interface CustomerProps {
-    id: string;
     uniq: string;
     userId: string;
     name: string;
@@ -39,14 +38,14 @@ class CustomerData {
       }
     }
   
-      async addCustomer(name, email, phone, address,active) {
-        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+      async addCustomer(uniq,userId, name, email, phone, address,active) {
+        
         try {
           const res = fetch("http://localhost:3000/api/customers",
             {
               body: JSON.stringify({
                   uniq: uniq,
-                  userId: "user1",
+                  userId: userId,
                   name: name,
                   phone: phone,
                   email: email,
@@ -58,14 +57,26 @@ class CustomerData {
               },
               method: 'POST'
             })
+
+            if(res) {
+              this.data.push({
+                uniq: uniq,
+                userId: userId,
+                name: name,
+                phone: phone,
+                email: email,
+                address: address,
+                active: active === "1"? true : false
+              })
+            }
             
         } catch (error) {
           console.log(error)
         }
       }
-      async updateCustomer(name, phone, email, address,active, id) {
+      async updateCustomer(name, phone, email, address,active, uniq) {
         try {
-          const res = fetch("http://localhost:3000/api/customers/"+id,
+          const res = fetch("http://localhost:3000/api/customers/"+uniq,
             {
               body: JSON.stringify({
                   name: name,
@@ -79,6 +90,18 @@ class CustomerData {
               },
               method: 'PUT'
             })
+
+            if(res) {
+              this.data.find( customer => {
+                if(customer.uniq === uniq) {
+                  customer.name = name;
+                  customer.phone = phone;
+                  customer.email = email;
+                  customer.address = address;
+                  customer.active = active === "1"? true : false;
+                }
+              })
+            }
             
         } catch (error) {
           console.log(error)

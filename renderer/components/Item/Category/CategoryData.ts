@@ -1,12 +1,11 @@
 import { makeAutoObservable } from "mobx";
 
 interface CategroyProps {
-    id: string;
     uniq: string;
     userId: string,
     parent: string,
     title: string,
-    active: string,
+    active: boolean,
     
 }
 class CategoryData { 

@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
 interface SubItemProps {
-    id: string;
     uniq: string;
     title: string,
     description: string,
@@ -14,7 +13,7 @@ class SubItemData {
 
     data: SubItemProps[] = [];
     itemIdByAllData: SubItemProps[] = [];
-    itemIdByAllData2: SubItemProps[] = [];
+    // itemIdByAllData2: SubItemProps[] = [];
     singleData: SubItemProps;
 
     constructor() {
@@ -45,7 +44,7 @@ class SubItemData {
             method: 'POST'
           }
           )
-        this.itemIdByAllData2 = await res.json()
+        this.itemIdByAllData = await res.json()
        
 
         } catch (error) {
@@ -62,8 +61,8 @@ class SubItemData {
     //   }
     // }
   
-      async addSubItem(title, description, price,ratio, itemUniq) {
-        const uniq = Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2);
+      async addSubItem(uniq,title, description, price,ratio, itemUniq) {
+        
         try {
           const res = fetch("http://localhost:3000/api/items/sub",
             {
@@ -80,18 +79,37 @@ class SubItemData {
               },
               method: 'POST'
             })
-            if(res) {
 
+            if(res) {
+              this.data.push({
+                uniq: uniq,
+                title: title,
+                description: description,
+                price: price,
+                ratio: ratio,
+                itemUniq: itemUniq,
+              })
+            }
+
+            if(res) {
+              this.itemIdByAllData.push({
+                uniq: uniq,
+                title: title,
+                description: description,
+                price: price,
+                ratio: ratio,
+                itemUniq: itemUniq,
+              })
             }
             
         } catch (error) {
           console.log(error)
         }
       }
-      async updateSubItem(title: string, description: string, price: string, ratio: string, id: string, uniq: string, itemUniq: string) {
+      async updateSubItem(title: string, description: string, price: string, ratio: string, uniq: string) {
         
         try {
-          const res = fetch("http://localhost:3000/api/items/sub/"+id,
+          const res = fetch("http://localhost:3000/api/items/sub/"+uniq,
             {
               body: JSON.stringify({
                 
@@ -105,17 +123,27 @@ class SubItemData {
               },
               method: 'PUT'
             })
+
             if(res) {
-              this.data.push({
-                id: id,
-                uniq: uniq,
-                title: title,
-                description: description,
-                price: price,
-                ratio: ratio,
-                itemUniq: itemUniq,
+              this.data.find( item => {
+                if( item.uniq === uniq ) {
+                  item.title = title;
+                  item.description = description;
+                  item.price = price;
+                  item.ratio = ratio;
+                }
+              })
+
+              this.itemIdByAllData.find( item => {
+                if( item.uniq === uniq ) {
+                  item.title = title;
+                  item.description = description;
+                  item.price = price;
+                  item.ratio = ratio;
+                }
               })
             }
+
         } catch (error) {
           console.log(error)
         }

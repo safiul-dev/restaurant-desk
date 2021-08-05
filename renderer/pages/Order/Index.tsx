@@ -5,6 +5,9 @@ import LeftbarButtons from '../../components/Order/Buttons/OrderLeftbarButtons/L
 import Table from '../../components/Order/OrderLertbar/Table';
 import TotalButton from '../../components/Order/Buttons/TotalBill';
 import AppLayout from '../../AppLayout/AppLayout';
+import { observer } from 'mobx-react';
+import { CategoryDatas } from '../../components/Item/Category/CategoryData';
+import { ItemDatas } from '../../components/Item/Item/ItemData';
 
 
 
@@ -12,24 +15,27 @@ import AppLayout from '../../AppLayout/AppLayout';
 class Index extends Component{
 
     state = {
+        isMounted: false,
         payment: false,
-        category: null
+        category: <CategoryRightbar1/>
     }
     constructor (props) {
         super(props);
-        this.state = {
-            payment: false,
-            category: <CategoryRightbar1/>
-        }
     }
-    // const [getItem, setItem] = useState(<CategoryRightbar1/>)
-    // const [getPayment, setPayment] = useState(false)
     clickToShow = () => {
       this.setState({payment:!this.state.payment})
       this.setState({category:this.state.payment?<Payment/>:<CategoryRightbar1/>})
     }
 
+    componentDidMount () {
+        this.setState({isMounted: true})
+        CategoryDatas.getCategroy()
+        ItemDatas.getItems()
+      }
 
+    componentWillUnmount() {
+        this.setState({isMounted: false})
+    }
   render() {
 
   
@@ -115,4 +121,4 @@ class Index extends Component{
         );
     }
 }
-export default Index;
+export default observer(Index);

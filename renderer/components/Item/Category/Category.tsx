@@ -1,6 +1,6 @@
 import { observer } from "mobx-react"
 import { useState } from "react"
-import { CategoryDatas } from "../../pages/Item/CategoryData"
+import { CategoryDatas } from "./CategoryData"
 
 
  

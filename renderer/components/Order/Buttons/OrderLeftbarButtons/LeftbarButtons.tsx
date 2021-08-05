@@ -111,8 +111,8 @@ export default class LeftbarButtons extends React.Component{
         <div className="mx-1 mt-1 overflow-x-auto h-full">
 
                 {
-                this.state.data.map((obj, index) =><button onClick={() => this.changeComponent(obj.component)} className="w-full bg-primary rounded h-height10% flex justify-center items-center mt-1">
-                    <h1 key={index} className="text-white uppercase not-italic sm:font-light md:font-light lg:font-semibold xl:font-bold tracking-wide font-sans sm:text-smallFont md:text-tiny lg:text-lg xl:text-xl 2xl:text-2xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center">
+                this.state.data.map((obj, index) =><button key={index} onClick={() => this.changeComponent(obj.component)} className="w-full bg-primary rounded h-height10% flex justify-center items-center mt-1">
+                    <h1  className="text-white uppercase not-italic sm:font-light md:font-light lg:font-semibold xl:font-bold tracking-wide font-sans sm:text-smallFont md:text-tiny lg:text-lg xl:text-xl 2xl:text-2xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center">
                         {obj.name}
                     </h1>
                     </button>)
