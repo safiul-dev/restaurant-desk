@@ -8,7 +8,7 @@ import { SubItemDatas } from '../SubItemData';
 class Item extends React.Component{
 
     state = {
-        itemUniId: '',
+        itemUniqId: '',
         title: '',
         description: '',
         price: '',
@@ -266,7 +266,7 @@ class Item extends React.Component{
                      </div>   
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         {this.state.isSubItemEditOption? null :
-                        <button onClick={() => this.updateModal(this.state.itemUniId)} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button onClick={() => this.updateModal(this.state.itemUniqId)} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Update
                         </button> 
                         }
@@ -281,7 +281,7 @@ class Item extends React.Component{
     }
 
     async  updateModal (id) {
-        console.log(this.state.title, this.state.description,this.state.categoryUniq,this.state.price,this.state.active,id)
+
         await ItemDatas.updateItem(this.state.title, this.state.description,this.state.categoryUniq,this.state.price,this.state.active,id)
 
         this.setState({modal: false})
@@ -322,6 +322,10 @@ class Item extends React.Component{
             active: item.active? "1" : "0",   
             modal: true,})
        }})
+
+       if (this.state.categoryUniq === '') {
+           this.setState({categoryUniq: CategoryDatas.data[0].uniq})
+       }
     }
 
     async deleteItem (id, item) {

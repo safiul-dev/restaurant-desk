@@ -79,7 +79,7 @@ class ItemData {
           console.log(error)
         }
       }
-      async updateItem(title: string, description: string, categoryUniq: string, price: string, active: string, uniq: string) {
+      async updateItem(title, description, categoryUniq, price, active,uniq) {
         try {
           const res = fetch("http://localhost:3000/api/items/"+uniq,
             {

@@ -39,10 +39,10 @@ class CategoryRightbar extends React.Component{
               <div className="grid grid-flow-row-dense grid-cols-2 gap-2 ">
                 {
                   !!CategoryDatas.data.length ? 
-                    CategoryDatas.data.map( (category, index) => 
+                    CategoryDatas.data.map( (category, index) => category.active?
                     <button key={index} onClick={() => this.getItemData(category.uniq)} className=" outline-none cursor-pointer 2xl:h-36 xl:h-32 lg:h-28 md:h-24 sm:h-16 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-semibold xl:font-bold sm:text-extraSmall md:text-tiny lg:text-lg xl:text-xl sm:leading-3 md:leading-4 lg:leading-5 xl:leading-6 text-center hover:text-white hover:bg-primary hover:shadow-2xl">
                     {category.title}
-                    </button>)
+                    </button>:null)
                     :
                     <div>
                       <h1>Category List is empty</h1>

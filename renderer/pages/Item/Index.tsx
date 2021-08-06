@@ -150,7 +150,7 @@ class Index extends Component<P, IndexState> {
             })
             
         }else{
-           await CategoryDatas.addCategory(this.state.title, this.state.active)
+           await CategoryDatas.addCategory(uniq, "user1", "parent1", this.state.title, this.state.active)
            
            this.setState({
                title: '',
