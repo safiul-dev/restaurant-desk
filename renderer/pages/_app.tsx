@@ -5,6 +5,7 @@ import {useEffect} from 'react';
 import { CategoryDatas } from '../components/Item/Category/CategoryData';
 import { ItemDatas } from '../components/Item/Item/ItemData';
 import { SubItemDatas } from '../components/Item/SubItemData';
+import { WaiterDatas } from './Waiter/WaitersData';
 
 function MyApp({ Component, pageProps }: AppProps) {
 

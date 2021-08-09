@@ -7,6 +7,8 @@ module.exports = {
       secondary: '#BCDDD4',
       yollow: '#808000',
       gray: '#A7A7A7',
+      grayNormal: '#787878',
+      tomato: '#DC143C',
       blue: '#007657',
       black: '#000000',
       white: '#FFFFFF',

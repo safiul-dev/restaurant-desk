@@ -84,7 +84,8 @@ export default function Index() {
                                                     <div className=" ">Orders</div>
                                                 </div>
                                         </button></Link>
-                                    <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
+                                   <Link href="/home"> 
+                                   <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">
                                             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +95,7 @@ export default function Index() {
                                             </div>
                                             <div className=" ">report</div>
                                         </div>
-                                    </button>
+                                    </button></Link>
                                     <button className="bg-primary uppercase text-white text-center w-width25% rounded-md 2xl:text-2xl xl:text-xl lg:text-lg md:text-base sm:text-tiny 2xl:font-extrabold xl:font-bold lg:font-semibold md:font-medium sm:font-normal ml-2 mb-1 h-full hover:shadow-2xl ">
                                     <div className="flex justify-center items-center">
                                             <div className="mr-2">

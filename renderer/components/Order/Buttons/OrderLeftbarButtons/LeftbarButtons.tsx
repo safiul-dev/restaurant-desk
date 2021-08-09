@@ -1,11 +1,21 @@
 import React from "react";
-
+import { TableDatas } from '../../../../pages/TableCrud/TableData';
+import { WaiterDatas } from "../../../../pages/Waiter/WaitersData";
+import { CustomerDatas } from '../../../../pages/Customer/CustomerData';
+import Select from 'react-select';
+import console from "console";
 
 export default class LeftbarButtons extends React.Component{
 
     state = {
         currentComponent: null,
         showModal: false,
+        table: '',
+        waiter: '',
+        customer: '',
+        ticketNote: '',
+        guests: '',
+        
         data : [
         {
             name:'change table',
@@ -48,6 +58,8 @@ export default class LeftbarButtons extends React.Component{
         super(props);
        
     }
+
+
     
 
     Modal() {
@@ -67,9 +79,9 @@ export default class LeftbarButtons extends React.Component{
                     <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div className="sm:flex sm:items-start">
-               
-
-                            <h1>hello</h1>
+                            {
+                               this.currentBodyInModal()
+                            }
 
 
                         </div>
@@ -88,8 +100,85 @@ export default class LeftbarButtons extends React.Component{
         )
     }
 
-    saveModal() {
+    currentBodyInModal() {
+        
+            if(this.state.currentComponent === 'changeTable') {
+                return   <div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl uppercase">Select Table</div>
+                                
+                            <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.table} onChange={(e) => this.setState({table: e.target.value}) } name="" id="">
+                            <option defaultValue="0">Select A Table</option>
+                                {TableDatas.data.map((table, index) => table.available_status? 
+                                    <option className="block w-full" key={index} defaultValue={table.uniq}>{table.title}</option> : null
+                                )}
+                                
+                            </select>
+                        </div>
+            }else if (this.state.currentComponent === 'selectWeiter') {
+                return <div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl uppercase">Select Waiter</div>
+                                
+                            <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.waiter} onChange={(e) => this.setState({waiter: e.target.value}) } name="" id="">
+                            <option defaultValue="0">Select A Waiter</option>
+                                {WaiterDatas.data.map((waiter, index) => waiter.active? 
+                                    <option className="block w-full" key={index} defaultValue={waiter.uniq}>{waiter.name}</option> : null
+                                )}
+                                
+                            </select>
+                        </div>
+            }else if (this.state.currentComponent === 'selectCustomer') {
+                const val = CustomerDatas.data.map((opt, index) => ({ value: opt.uniq, label: opt.name }))
 
+                return <div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl uppercase">Select Customer</div>
+
+                        <Select
+                                className="border border-primary rounded text-gray"
+                                onChange={(e) => this.setState({customer: e.value})}
+                                options={val}
+                            />
+                        </div>
+            }else if(this.state.currentComponent === 'ticketNote') {
+                return<div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl">Write Down Some Note for this Order</div>
+                                
+                            <textarea name=""  onChange={(e) => this.setState({ ticketNote: e.target.value})} id="" className="w-full h-20 outline-none rounded border border-primary px-2 text-grayNormal" defaultValue={this.state.customer}/>
+                        </div> 
+            }else if (this.state.currentComponent === 'cancelAll') {
+               return <div className="w-full flex justify-evenly">
+                           <div onClick={this.clearAllOrderPage} className="text-center font-bold text-white text-xl uppercase bg-red h-16 w-24 rounded-md pointer shadow-md hover:bg-tomato ">
+                               Clear All
+                           </div>
+                           <div>
+                               Clear All
+                           </div>
+                       </div> 
+            }else if (this.state.currentComponent === 'numberOfGuest') {
+                return   <div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl uppercase">how many guest have?</div>
+                                
+                            <input onChange={(e) => this.setState({ guests: e.target.value})} value={this.state.guests} type="number" min="0" max="100" className="w-full rounded h-10 px-2 text-grayNormal outline-none border border-primary" placeholder="Enter guest..." />
+                        </div>
+            }
+        
+    }
+
+    clearAllOrderPage () {
+        console.log("hello")
+    }
+
+    saveModal() {
+        if (this.state.currentComponent === 'changeTable') {
+
+        }else if (this.state.currentComponent === 'selectWeiter') {
+            
+        }else if (this.state.currentComponent === 'selectCustomer') {
+            
+        }else if (this.state.currentComponent === 'ticketNote') {
+            
+        }else if (this.state.currentComponent === 'numberOfGuest') {
+            
+        }
     }
 
     cancelModal() {

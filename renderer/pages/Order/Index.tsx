@@ -8,6 +8,9 @@ import AppLayout from '../../AppLayout/AppLayout';
 import { observer } from 'mobx-react';
 import { CategoryDatas } from '../../components/Item/Category/CategoryData';
 import { ItemDatas } from '../../components/Item/Item/ItemData';
+import { TableDatas } from '../TableCrud/TableData';
+import { WaiterDatas } from '../Waiter/WaitersData';
+import { CustomerDatas } from '../Customer/CustomerData';
 
 
 
@@ -31,6 +34,9 @@ class Index extends Component{
         this.setState({isMounted: true})
         CategoryDatas.getCategroy()
         ItemDatas.getItems()
+        TableDatas.getTables()
+        WaiterDatas.getWaiters()
+        CustomerDatas.getCustomsers()
       }
 
     componentWillUnmount() {

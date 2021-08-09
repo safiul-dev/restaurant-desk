@@ -21,6 +21,7 @@ type IndexState = {
     active: string,
     categoryUniq: string,
     moduleName: string,
+    isMounted: boolean,
 };
 
 class Index extends Component<P, IndexState> {
@@ -33,7 +34,7 @@ class Index extends Component<P, IndexState> {
         price: '',
         categoryUniq: '',
         active: "1",
-
+        isMounted: false,
         moduleName: "Add Item",
         
     }
@@ -42,12 +43,15 @@ class Index extends Component<P, IndexState> {
          
      }
     componentDidMount() {
+        this.setState({isMounted: true})
         CategoryDatas.getCategroy()
         CategoryDatas.getActiveCategory()
         ItemDatas.getItems()
-        SubItemDatas.getAllSubItems()
+        SubItemDatas.getAllSubItems() 
+    }
 
-        
+    componentWillUnmount () {
+        this.setState({isMounted: false})
     }
      Modal() {
         if(!this.state.modal){
@@ -146,7 +150,7 @@ class Index extends Component<P, IndexState> {
                 categoryUniq: '',
                 price: '',
                 active: '1',
-                modal: false
+                modal: false,
             })
             
         }else{

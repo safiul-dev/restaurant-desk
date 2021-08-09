@@ -1,10 +1,16 @@
 import { makeAutoObservable } from "mobx";
 
 interface OrderProps {
+  uniq: string;
+  tableUniq: string;
+  waiterUniq: string;
+  customerUniq: string;
+  guests: number;
+  orderNote: string;
   itemTitle: string;
-  itemQt: string;
+  itemUniq: string;
+  itemQt: number;
   itemPrice: string;
-
 }
 class OrderData { 
 
@@ -14,18 +20,27 @@ class OrderData {
 
     constructor() {
     
-        makeAutoObservable(this)
-        
+        makeAutoObservable(this)        
     }
 
-    // async getCustomsers() {
-    //     try {
-    //       const res = await fetch("http://localhost:3000/api/customers")
-    //     this.data = await res.json()
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-    //   }
+    addData(uniq:string) {
+      if(!!this.data.length){
+       
+          this.data.push({
+            uniq: uniq,
+            tableUniq: '',
+            waiterUniq: '',
+            customerUniq: '',
+            orderNote: '',
+            guests: 0,
+            itemTitle: '',
+            itemUniq: '',
+            itemPrice: '',
+            itemQt: 0,
+            
+          }) 
+      }
+    }
 
     // async getOne(id) {
     //   try {

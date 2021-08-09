@@ -13,13 +13,18 @@ class Index extends React.Component{
         address: '',
         active: '1',
         modal: false,
+        isMounted: false
     }
     constructor (props) {
         super(props)
     }
 
     componentDidMount() {
+        this.setState({isMounted: true})
         WaiterDatas.getWaiters()
+    }
+    componentWillUnmount () {
+        this.setState({isMounted: false})
     }
 
      resetForm() {

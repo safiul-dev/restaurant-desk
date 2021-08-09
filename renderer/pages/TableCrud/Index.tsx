@@ -14,15 +14,20 @@ import { TableDatas } from './TableData';
         title: '',
         capacity: '',
         table: false,
+        isMounted: false
 
     }
     constructor (props) {
         super(props);
     }
     componentDidMount(){
+        this.setState({isMounted: true});
         TableDatas.getTables()
     }
 
+    componentWillUnmount () {
+        this.setState({isMounted: false})
+    }
      Modal() {
         if(!this.state.modal){
             return null;

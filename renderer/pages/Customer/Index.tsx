@@ -14,13 +14,18 @@ class Index extends React.Component{
         address: '',
         active: '1',
         modal: false,
+        isMounted: false
     }
     constructor (props) {
         super(props)
     }
 
     componentDidMount () {
+        this.setState({isMounted: true})
         CustomerDatas.getCustomsers()
+    }
+    componentWillUnmount () {
+        this.setState({isMounted: false})
     }
 
     

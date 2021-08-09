@@ -1,6 +1,7 @@
 
 import { observer } from 'mobx-react';
 import React from 'react';
+import { OrderDatas } from '../../../../pages/Order/OrdarData';
 import { CategoryDatas } from '../../../Item/Category/CategoryData';
 import { ItemDatas } from '../../../Item/Item/ItemData';
 
@@ -8,9 +9,15 @@ import { ItemDatas } from '../../../Item/Item/ItemData';
 
 class CategoryRightbar extends React.Component{
 
-  state = {}
+  state = {
+    
+  }
+  clickCount = 0
+  singleClickTimer = null 
   constructor (props) {
     super(props)
+    this.clickCount = 0
+    this.singleClickTimer = null 
   }
 
   getItemData (categoryUniqId) {
@@ -30,6 +37,36 @@ class CategoryRightbar extends React.Component{
     })
   }
 
+  singleClick = (itemUniq) => {
+    ItemDatas.data.find((item, index) => {
+      if(item.uniq === itemUniq) {
+        
+        OrderDatas.addData(item.title, item.uniq, item.price, 1)
+      }
+    })
+  
+
+
+  }
+
+  handleDoubleClick = () => {
+      console.log('only fire double click')
+  }
+  handleClicks(itemUniq){
+      this.clickCount++;
+    if (this.clickCount === 1) {
+      this.singleClickTimer = setTimeout(function() {
+        this.clickCount = 0;
+        this.singleClick(itemUniq);
+      }.bind(this), 300);
+
+    } else if (this.clickCount === 2) {
+      clearTimeout(this.singleClickTimer);
+      this.clickCount = 0;
+      this.handleDoubleClick();
+    }
+  }
+
   render() {
     return(
         <div className=" w-full h-full flex">
@@ -44,9 +81,7 @@ class CategoryRightbar extends React.Component{
                     {category.title}
                     </button>:null)
                     :
-                    <div>
-                      <h1>Category List is empty</h1>
-                    </div>
+                   null
                 }
                   
                 </div>
@@ -64,7 +99,7 @@ class CategoryRightbar extends React.Component{
                       {
                         !!ItemDatas.itemDataForCategory.length?
                         ItemDatas.itemDataForCategory.map((item, index) => 
-                        <button className=" 2xl:h-28 xl:h-24 lg:h-20 md:h-16 sm:h-14 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-medium xl:font-medium sm:text-smallFont md:text-smallFont lg:text-tiny xl:text-base sm:leading-tight md:leading-4 lg:leading-5 xl:leading-6 flex justify-center items-center px-1 hover:text-white hover:bg-primary hover:shadow-2xl">
+                        <button key={index} onClick={() =>this.handleClicks(item.uniq)} className=" 2xl:h-28 xl:h-24 lg:h-20 md:h-16 sm:h-14 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-medium xl:font-medium sm:text-smallFont md:text-smallFont lg:text-tiny xl:text-base sm:leading-tight md:leading-4 lg:leading-5 xl:leading-6 flex justify-center items-center px-1 hover:text-white hover:bg-primary hover:shadow-2xl">
                           {item.title}
                         </button>
                         )
