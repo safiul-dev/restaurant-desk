@@ -15,7 +15,8 @@ module.exports = {
       TheadColor: '#748883',
       buttomButtonDarkLight: '#748883',
       red: '#CA054D',
-      middleButtonFontColor: '#748883'
+      middleButtonFontColor: '#748883',
+      blackRed: '#800000'
     },
     fontSize: {
       'mainButtonFontSize': '30px',
@@ -127,7 +128,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      display: ["group-hover"],
+      visibility: ['hover', 'focus'],
+    },
   },
   plugins: [
     require("tailwindcss"),

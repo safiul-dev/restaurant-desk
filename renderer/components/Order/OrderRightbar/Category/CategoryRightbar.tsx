@@ -1,16 +1,16 @@
-
 import { observer } from 'mobx-react';
 import React from 'react';
 import { OrderDatas } from '../../../../pages/Order/OrdarData';
 import { CategoryDatas } from '../../../Item/Category/CategoryData';
 import { ItemDatas } from '../../../Item/Item/ItemData';
+import { SubItemDatas } from '../../../Item/SubItemData';
 
 
 
 class CategoryRightbar extends React.Component{
 
   state = {
-    
+    showModal: false
   }
   clickCount = 0
   singleClickTimer = null 
@@ -19,7 +19,7 @@ class CategoryRightbar extends React.Component{
     this.clickCount = 0
     this.singleClickTimer = null 
   }
-
+  // geting item data and showing with filtered categoryUniq
   getItemData (categoryUniqId) {
     if(ItemDatas.itemDataForCategory.length != 0) {
       const indexHas = []
@@ -36,22 +36,49 @@ class CategoryRightbar extends React.Component{
       }
     })
   }
-
-  singleClick = (itemUniq) => {
-    ItemDatas.data.find((item, index) => {
-      if(item.uniq === itemUniq) {
+  // add sub Item Data 
+  subItemAdd (subUniq) {
+    SubItemDatas.data.find((item, index) => {
+      if(item.uniq === subUniq) {
         
-        OrderDatas.addData(item.title, item.uniq, item.price, 1)
+        OrderDatas.addData(item.title, item.itemUniq,item.uniq, item.price, 1)
       }
     })
-  
+  }
+  // add item data on single click
+  singleClick = (itemUniq) => {
+      
+      ItemDatas.data.find((item, index) => {
+        if(item.uniq === itemUniq) {
+          
+          OrderDatas.addData(item.title, item.uniq,null, item.price, 1)
+        }
+      })
+    
+  }
+  // handleDoubleClick and show modal if Sub data available else add item data
+  handleDoubleClick = (itemUniq) => {
+    var isData = 0
+    SubItemDatas.data.find(item => {
+      if( item.itemUniq === itemUniq) {
 
-
+         isData = SubItemDatas.itemIdByAllData.push(item)
+      }
+    })
+    
+      isData >0 ? this.setState({showModal: true}) 
+      
+      : 
+      
+      ItemDatas.data.find((item, index) => {
+        if(item.uniq === itemUniq) {
+          
+          OrderDatas.addData(item.title, item.uniq,null, item.price, 1)
+        }
+      })
   }
 
-  handleDoubleClick = () => {
-      console.log('only fire double click')
-  }
+  // handle the double or single click 
   handleClicks(itemUniq){
       this.clickCount++;
     if (this.clickCount === 1) {
@@ -63,9 +90,74 @@ class CategoryRightbar extends React.Component{
     } else if (this.clickCount === 2) {
       clearTimeout(this.singleClickTimer);
       this.clickCount = 0;
-      this.handleDoubleClick();
+      this.handleDoubleClick(itemUniq);
     }
   }
+
+  // modal component here
+  Modal() {
+    if(this.state.showModal === false){
+        return null;
+    }
+    
+    return (
+        <div className="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="false">
+            <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        
+
+                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+                <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div className="sm:flex sm:items-start">
+                        <div className="w-full ">
+                          <div className="text-center text-primary py-2 uppercase text-xl font-bold">
+                            Select SubPrice And Ratio
+                          </div>
+                         <table className="w-full  bg-primary rounded">
+                           <tbody className="text-white">
+                             {SubItemDatas.itemIdByAllData.map((item)=> 
+                                <tr className="py-1 text-center  w-full">
+                                  <td className="">{item.title}</td>
+                                  <td>{item.ratio}</td>
+                                  <td>{item.price}</td>
+                                  <td className="text-center">
+                                      <svg onClick={() => this.subItemAdd(item.uniq)} className="w-6 h-6 hover:text-gray pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                  </td>
+                                </tr>
+                             )}
+                             
+                           </tbody>
+                         </table>
+                              
+                        </div>
+                       
+                    </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button onClick={() => this.cancelModal()} className="mt-3 w-full inline-flex justify-center rounded-md border border-primary outline-none hover:bg-primary hover:text-white shadow-sm px-4 py-2 bg-white text-base font-medium focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+                </div>
+            </div>
+    </div>
+    )
+}
+
+cancelModal() {
+  if(SubItemDatas.itemIdByAllData.length != 0) {
+    const indexHas = []
+       
+    SubItemDatas.itemIdByAllData.map((item, index) =>  indexHas.push(index))
+    for (let i=0; i<indexHas.length; i++) {
+        SubItemDatas.itemIdByAllData.pop()
+    }
+  }
+  this.setState({showModal: false})
+}
 
   render() {
     return(
@@ -114,6 +206,7 @@ class CategoryRightbar extends React.Component{
         </div>
         <div className="w-width5% h-full bg-black">
         </div>
+        {this.state.showModal ? this.Modal() : null}
       </div>
     )
   }

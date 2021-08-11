@@ -63,7 +63,7 @@ class Item extends React.Component{
 
     // editing SubItem By Id  
     editSubItem (id) {
-        console.log("this is edit")
+        
         SubItemDatas.itemIdByAllData.find(item => {if(item.uniq === id) {
             this.setState({
                 title: item.title,
@@ -248,8 +248,10 @@ class Item extends React.Component{
                                         <select className="h-8 px-2 w-full rounded-md border border-gray outline-none" name="status" defaultValue={this.state.categoryUniq} onChange={(e) => this.setState({categoryUniq: e.target.value})} >
                                             {
                                             CategoryDatas.data.map((category, index) =>
-
+                                                    category.active?
                                                <option key={index} value={category.uniq}>{category.title}</option>
+                                               : 
+                                               null
                                             )}
                                         </select>
                                     </div>
@@ -282,9 +284,15 @@ class Item extends React.Component{
 
     async  updateModal (id) {
 
-        await ItemDatas.updateItem(this.state.title, this.state.description,this.state.categoryUniq,this.state.price,this.state.active,id)
+        const categoryId = this.state.categoryUniq === '' ? CategoryDatas.activeData[0].uniq : this.state.categoryUniq
+        await ItemDatas.updateItem(this.state.title, this.state.description,categoryId,this.state.price,this.state.active,id)
 
         this.setState({modal: false})
+        const indexHas = []
+        CategoryDatas.activeData.map((item, index) =>  indexHas.push(index))
+        for (let i=0; i<indexHas.length; i++) {
+            CategoryDatas.activeData.pop()
+        }
     }
     
      cancelModal() {
@@ -293,6 +301,11 @@ class Item extends React.Component{
         SubItemDatas.itemIdByAllData.map((item, index) =>  indexHas.push(index))
         for (let i=0; i<indexHas.length; i++) {
             SubItemDatas.itemIdByAllData.pop()
+        }
+        const categoryIndex = []
+        CategoryDatas.activeData.map((item, index) =>  categoryIndex.push(index))
+        for (let i=0; i<categoryIndex.length; i++) {
+            CategoryDatas.activeData.pop()
         }
         this.setState({
 
@@ -312,6 +325,7 @@ class Item extends React.Component{
 
     
      editItems (uniq) {
+       CategoryDatas.data.find((item, index) => item.active? CategoryDatas.activeData.push(item) : null)
        ItemDatas.data.find((item) => {if(item.uniq === uniq) {
            this.setState({
             itemUniqId: item.uniq,
@@ -323,9 +337,7 @@ class Item extends React.Component{
             modal: true,})
        }})
 
-       if (this.state.categoryUniq === '') {
-           this.setState({categoryUniq: CategoryDatas.data[0].uniq})
-       }
+     
     }
 
     async deleteItem (id, item) {

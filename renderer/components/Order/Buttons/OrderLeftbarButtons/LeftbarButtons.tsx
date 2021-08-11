@@ -4,6 +4,7 @@ import { WaiterDatas } from "../../../../pages/Waiter/WaitersData";
 import { CustomerDatas } from '../../../../pages/Customer/CustomerData';
 import Select from 'react-select';
 import console from "console";
+import { OrderDatas } from '../../../../pages/Order/OrdarData';
 
 export default class LeftbarButtons extends React.Component{
 
@@ -14,7 +15,7 @@ export default class LeftbarButtons extends React.Component{
         waiter: '',
         customer: '',
         ticketNote: '',
-        guests: '',
+        guests: 1,
         
         data : [
         {
@@ -87,11 +88,11 @@ export default class LeftbarButtons extends React.Component{
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                        <button onClick={() => this.saveModal()} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        <button onClick={() => this.saveModal()} type="button" className="w-full inline-flex justify-center rounded-md border border-primary hover:bg-primary hover:text-white shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white text-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Save
                         </button>
-                        <button onClick={() => this.cancelModal()} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                            Cancel
+                        <button onClick={() => this.cancelModal()} type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-primary hover:bg-primary hover:text-white  shadow-sm px-4 py-2 bg-white text-primary text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            Close
                         </button>
                     </div>
                     </div>
@@ -109,7 +110,7 @@ export default class LeftbarButtons extends React.Component{
                             <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.table} onChange={(e) => this.setState({table: e.target.value}) } name="" id="">
                             <option defaultValue="0">Select A Table</option>
                                 {TableDatas.data.map((table, index) => table.available_status? 
-                                    <option className="block w-full" key={index} defaultValue={table.uniq}>{table.title}</option> : null
+                                    <option className="block w-full" key={index} value={table.uniq}>{table.title}</option> : null
                                 )}
                                 
                             </select>
@@ -121,7 +122,7 @@ export default class LeftbarButtons extends React.Component{
                             <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.waiter} onChange={(e) => this.setState({waiter: e.target.value}) } name="" id="">
                             <option defaultValue="0">Select A Waiter</option>
                                 {WaiterDatas.data.map((waiter, index) => waiter.active? 
-                                    <option className="block w-full" key={index} defaultValue={waiter.uniq}>{waiter.name}</option> : null
+                                    <option className="block w-full" key={index} value={waiter.uniq}>{waiter.name}</option> : null
                                 )}
                                 
                             </select>
@@ -170,14 +171,28 @@ export default class LeftbarButtons extends React.Component{
     saveModal() {
         if (this.state.currentComponent === 'changeTable') {
 
+        //    if (this.state.table != '') OrderDatas.tableUniq = this.state.table
+           this.setState({showModal: false})
+
         }else if (this.state.currentComponent === 'selectWeiter') {
             
+            // if (this.state.waiter != '') OrderDatas.waiterUniq = this.state.waiter
+            this.setState({showModal: false})
+
         }else if (this.state.currentComponent === 'selectCustomer') {
             
+            // if (this.state.customer != '') OrderDatas.customerUniq = this.state.customer
+            this.setState({showModal: false})
+            
         }else if (this.state.currentComponent === 'ticketNote') {
+
+            // if (this.state.ticketNote != '') OrderDatas.orderNote = this.state.ticketNote
+            this.setState({showModal: false})
             
         }else if (this.state.currentComponent === 'numberOfGuest') {
             
+            //  OrderDatas.guests = this.state.guests
+             this.setState({showModal: false})
         }
     }
 

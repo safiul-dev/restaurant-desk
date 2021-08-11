@@ -12,6 +12,31 @@ class Table extends Component {
     constructor(props) {
         super(props);
     }
+    
+    // Increasing the Quantity value
+    increaseQuantity (itemUniq, subItemUniq) {
+    OrderDatas.data.find((item) => item.subPricingUniq === subItemUniq && item.itemUniq === itemUniq? item.itemQt++ : null);   
+    }
+
+    // decreasing the Quantity value and delete item
+    decrementQuantity(itemUniq, subPricingUniq){
+        var isQuantityZero = false;
+        var zeroQtItem = null
+        OrderDatas.data.find((item) => {if(item.subPricingUniq === subPricingUniq &&item.itemUniq === itemUniq){
+            
+            item.itemQt --;
+            if(item.itemQt === 0) {
+                zeroQtItem = item
+                isQuantityZero = true;
+            }
+        }}) 
+
+        if(isQuantityZero) {
+            
+            OrderDatas.data.splice(OrderDatas.data.indexOf(zeroQtItem), 1)
+        }
+    }
+
     render() {
     return(
         <div className="h-full">
@@ -29,9 +54,21 @@ class Table extends Component {
                             <tbody className="">
                                 {OrderDatas.data.length? OrderDatas.data.map((item, index) =>  
                                 <tr key={index} className="border border-white" >
-                                    <td className="border border-white inline-block align-middle relative">
-                                        <div className=" absolute" id="qt">{item.itemQt}</div>
-                                        <div className="opacity-0 hover:opacity-100 text-red absolute">-</div>
+                                    <td className="border border-white">
+                                        <div className="group w-full h-full flex justify-center items-center">
+                                            
+                                            <div className=" block group-hover:hidden" style={{}} id="qt">{item.itemQt}</div>
+                                            <div className="hidden group-hover:block text-red ">
+                                            
+
+                                                <svg onClick={() => this.increaseQuantity(item.itemUniq, item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed  rounded-full mb-0.5"fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+</svg>
+<svg onClick={() => this.decrementQuantity(item.itemUniq,item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+</svg>
+                                            </div>
+                                        </div>
                                         </td>
                                     <td className="border border-white">
                                     

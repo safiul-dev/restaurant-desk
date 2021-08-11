@@ -11,6 +11,8 @@ import { ItemDatas } from '../../components/Item/Item/ItemData';
 import { TableDatas } from '../TableCrud/TableData';
 import { WaiterDatas } from '../Waiter/WaitersData';
 import { CustomerDatas } from '../Customer/CustomerData';
+import { OrderDatas } from './OrdarData';
+import { SubItemDatas } from '../../components/Item/SubItemData';
 
 
 
@@ -31,12 +33,15 @@ class Index extends Component{
     }
 
     componentDidMount () {
+        
         this.setState({isMounted: true})
         CategoryDatas.getCategroy()
         ItemDatas.getItems()
         TableDatas.getTables()
         WaiterDatas.getWaiters()
         CustomerDatas.getCustomsers()
+        SubItemDatas.getAllSubItems()
+        
       }
 
     componentWillUnmount() {
@@ -65,7 +70,7 @@ class Index extends Component{
                                     <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg flex justify-between pb-1">
                                         <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Ticket #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span> </div>
                                         <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Order #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
-                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Table: <span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
+                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Table: <span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">{0}</span></div>
                                     </div>
                                     <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 flex justify-between">
                                         <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2">Status: <span className="bg-black rounded-md uppercase text-red 2xl:font-semibold xl:font-semibold lg:font-medium md:font-normal sm:font-light">uppaid</span></div>
