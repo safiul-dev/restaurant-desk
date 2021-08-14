@@ -1,23 +1,25 @@
 import { makeAutoObservable } from "mobx";
 
-interface OrderProps {
-  // uniq: string;
-  // tableUniq: string;
-  // waiterUniq: string;
-  // customerUniq: string;
-  // guests: number;
-  // orderNote: string;
+interface OrderItemProps {
   subPricingUniq: string;
   itemTitle: string;
   itemUniq: string;
   itemQt: number;
   itemPrice: string;
 }
+
 class OrderData { 
 
-    data: OrderProps[] = [];
+    data: OrderItemProps[] = [];
     totalAmount:''
-    singleData: OrderProps;
+    singleData: OrderItemProps;
+    tableUniq: string;
+    waiterUniq: string;
+    customerUniq: string;
+    guests: number;
+    orderNote: string;
+    TotalBill: string;
+    TotalAmount: string;
 
     constructor() {
     
@@ -46,6 +48,24 @@ class OrderData {
           })
         }
      
+    }
+
+    get total () {
+      if( this.data.length > 0) {
+        var sum = 0
+           this.data.map( (item) => {
+             if(item.itemQt>1){
+              sum += parseFloat(item.itemPrice) * item.itemQt
+             }else{
+              sum += parseFloat(item.itemPrice)
+             }
+           } )
+           this.totalAmount += sum
+       return sum
+      }else {
+        return 
+      }
+      
     }
 
     // async getOne(id) {

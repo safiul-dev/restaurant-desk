@@ -40,8 +40,6 @@ class Table extends Component {
     render() {
     return(
         <div className="h-full">
-
-
         <div className=" h-height80% border-b border-white overflow-y-scroll scrollbar-hide">
                 <table className="w-full   rounded-t-md">
                             <thead className="bg-TheadColor rounded text-white overflow-y-auto h-16 ">
@@ -57,16 +55,16 @@ class Table extends Component {
                                     <td className="border border-white">
                                         <div className="group w-full h-full flex justify-center items-center">
                                             
-                                            <div className=" block group-hover:hidden" style={{}} id="qt">{item.itemQt}</div>
+                                            <div className=" block group-hover:hidden" id="qt">{item.itemQt}</div>
                                             <div className="hidden group-hover:block text-red ">
                                             
 
                                                 <svg onClick={() => this.increaseQuantity(item.itemUniq, item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed  rounded-full mb-0.5"fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-</svg>
-<svg onClick={() => this.decrementQuantity(item.itemUniq,item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
-</svg>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                </svg>
+                                                <svg onClick={() => this.decrementQuantity(item.itemUniq,item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 12H6" />
+                                                </svg>
                                             </div>
                                         </div>
                                         </td>
@@ -89,7 +87,7 @@ class Table extends Component {
                 <div className="float-right mr-16">
                     <div className="flex flex-row">
                         <div className="mr-20">Total:</div>
-                        <div className="">2000.00</div>
+                        <div className="">{OrderDatas.total}</div>
                     </div>
                     <div className="flex flex-row">
                         <div className="mr-20">Vat:</div>

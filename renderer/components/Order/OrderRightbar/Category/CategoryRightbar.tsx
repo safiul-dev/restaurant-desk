@@ -45,20 +45,12 @@ class CategoryRightbar extends React.Component{
       }
     })
   }
-  // add item data on single click
-  singleClick = (itemUniq) => {
-      
-      ItemDatas.data.find((item, index) => {
-        if(item.uniq === itemUniq) {
-          
-          OrderDatas.addData(item.title, item.uniq,null, item.price, 1)
-        }
-      })
-    
-  }
-  // handleDoubleClick and show modal if Sub data available else add item data
-  handleDoubleClick = (itemUniq) => {
+
+  // adding item to card directly if nothing have any sub pricing item else showing modal with SubPricing items 
+  addItemToCard(itemUniq){
+  
     var isData = 0
+    
     SubItemDatas.data.find(item => {
       if( item.itemUniq === itemUniq) {
 
@@ -66,32 +58,17 @@ class CategoryRightbar extends React.Component{
       }
     })
     
-      isData >0 ? this.setState({showModal: true}) 
-      
-      : 
-      
-      ItemDatas.data.find((item, index) => {
-        if(item.uniq === itemUniq) {
-          
-          OrderDatas.addData(item.title, item.uniq,null, item.price, 1)
-        }
-      })
-  }
+      if(isData > 0) {
+        this.setState({showModal: true}) 
+      }else{
 
-  // handle the double or single click 
-  handleClicks(itemUniq){
-      this.clickCount++;
-    if (this.clickCount === 1) {
-      this.singleClickTimer = setTimeout(function() {
-        this.clickCount = 0;
-        this.singleClick(itemUniq);
-      }.bind(this), 300);
-
-    } else if (this.clickCount === 2) {
-      clearTimeout(this.singleClickTimer);
-      this.clickCount = 0;
-      this.handleDoubleClick(itemUniq);
-    }
+        ItemDatas.data.find((item, index) => {
+          if(item.uniq === itemUniq) {
+            
+            OrderDatas.addData(item.title, item.uniq,null, item.price, 1)
+          }
+        })
+      } 
   }
 
   // modal component here
@@ -191,7 +168,7 @@ cancelModal() {
                       {
                         !!ItemDatas.itemDataForCategory.length?
                         ItemDatas.itemDataForCategory.map((item, index) => 
-                        <button key={index} onClick={() =>this.handleClicks(item.uniq)} className=" 2xl:h-28 xl:h-24 lg:h-20 md:h-16 sm:h-14 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-medium xl:font-medium sm:text-smallFont md:text-smallFont lg:text-tiny xl:text-base sm:leading-tight md:leading-4 lg:leading-5 xl:leading-6 flex justify-center items-center px-1 hover:text-white hover:bg-primary hover:shadow-2xl">
+                        <button key={index} onClick={() =>this.addItemToCard(item.uniq)} className=" 2xl:h-28 xl:h-24 lg:h-20 md:h-16 sm:h-14 bg-secondary rounded-md text-middleButtonFontColor uppercase sm:font-light md:font-medium lg:font-medium xl:font-medium sm:text-smallFont md:text-smallFont lg:text-tiny xl:text-base sm:leading-tight md:leading-4 lg:leading-5 xl:leading-6 flex justify-center items-center px-1 hover:text-white hover:bg-primary hover:shadow-2xl">
                           {item.title}
                         </button>
                         )

@@ -3,8 +3,9 @@ import { TableDatas } from '../../../../pages/TableCrud/TableData';
 import { WaiterDatas } from "../../../../pages/Waiter/WaitersData";
 import { CustomerDatas } from '../../../../pages/Customer/CustomerData';
 import Select from 'react-select';
-import console from "console";
 import { OrderDatas } from '../../../../pages/Order/OrdarData';
+import { makePublicRouterInstance } from "next/dist/client/router";
+
 
 export default class LeftbarButtons extends React.Component{
 
@@ -16,6 +17,13 @@ export default class LeftbarButtons extends React.Component{
         customer: '',
         ticketNote: '',
         guests: 1,
+
+        search: '',
+
+        isLitst: false,
+
+        cursor: 0,
+        isKeyUpEd: false,
         
         data : [
         {
@@ -57,7 +65,7 @@ export default class LeftbarButtons extends React.Component{
     ]}
     constructor(props){
         super(props);
-       
+        this.handleKeyDown = this.handleKeyDown.bind(this)
     }
 
 
@@ -130,14 +138,23 @@ export default class LeftbarButtons extends React.Component{
             }else if (this.state.currentComponent === 'selectCustomer') {
                 const val = CustomerDatas.data.map((opt, index) => ({ value: opt.uniq, label: opt.name }))
 
-                return <div className="w-full">
-                            <div className="text-center font-bold text-primary text-xl uppercase">Select Customer</div>
+                return <div className="w-full overflow-y-auto h-full">
+                        <div className="text-center font-bold text-primary text-xl uppercase">Select Customer</div>
 
-                        <Select
-                                className="border border-primary rounded text-gray"
-                                onChange={(e) => this.setState({customer: e.value})}
-                                options={val}
-                            />
+                            <div className="flex flex-row mb-1" onClick={(e) => this.state.isLitst? this.setState({isLitst: false, search: ''}) : this.setState({isLitst: true})}>
+                                <input onKeyDown={this.handleKeyDown } defaultValue={this.state.customer} onChange={(e) => this.setState({search: e.target.value})} type="text" className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
+                                <div className="w-10 h-10 border-t border-r border-b border-primary rounded-tr rounded-br flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            {this.state.isLitst ? this.listItem() : null}
+                               
+                 
+
+                            
                         </div>
             }else if(this.state.currentComponent === 'ticketNote') {
                 return<div className="w-full">
@@ -163,6 +180,62 @@ export default class LeftbarButtons extends React.Component{
             }
         
     }
+    
+    
+    selectList (item) {
+       
+            this.setState({customer: item.name, isLitst: false, search: ''})
+
+    }
+
+    handleKeyDown(e) {
+        var { cursor } = this.state
+        this.setState({isKeyUpEd: true})
+        // arrow up/down button should select next/previous list element
+        if (e.keyCode === 38 && cursor > 0) {
+            
+          this.setState({
+            cursor: cursor - 1
+          })
+         
+        } else if (e.keyCode === 40 && cursor < CustomerDatas.data.length -1) {
+            
+          this.setState( {
+            cursor: cursor + 1
+          })
+            
+
+        }
+      }
+
+    listItem() {
+        const { cursor } = this.state
+        const itemListStyle = "h-10 w-full text-left pl-5 bg-gray flex items-center mb-1 rounded "
+        var customers = CustomerDatas.data.filter(
+            (cus) => { return cus.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;}
+        )
+        return (<div className="h-48 w-full active rounded py-2 px-2 border border-primary shadow-lg overflow-y-auto">
+                    { customers.map((cus, index) => 
+                          {
+                             
+                          if(index === this.state.cursor && this.state.isKeyUpEd === true )
+                             {
+                                
+                             return <div  onClick={ () => this.selectList(cus) } className={itemListStyle}>{cus.name}</div> 
+                            }
+                        
+                            else{ return <div  onClick={ () => this.selectList(cus) } className="h-10 w-full text-left hover:bg-gray pl-5 bg-whiteGray flex items-center mb-1 rounded ">{cus.name}</div>}
+                          
+                            
+                        } 
+                        
+                    
+                    
+                    )}
+                            
+
+                </div>)
+    }
 
     clearAllOrderPage () {
         console.log("hello")
@@ -171,34 +244,38 @@ export default class LeftbarButtons extends React.Component{
     saveModal() {
         if (this.state.currentComponent === 'changeTable') {
 
-        //    if (this.state.table != '') OrderDatas.tableUniq = this.state.table
+           if (this.state.table != '') OrderDatas.tableUniq = this.state.table
            this.setState({showModal: false})
 
         }else if (this.state.currentComponent === 'selectWeiter') {
             
-            // if (this.state.waiter != '') OrderDatas.waiterUniq = this.state.waiter
+            if (this.state.waiter != '') OrderDatas.waiterUniq = this.state.waiter
             this.setState({showModal: false})
 
         }else if (this.state.currentComponent === 'selectCustomer') {
             
-            // if (this.state.customer != '') OrderDatas.customerUniq = this.state.customer
+            if (this.state.customer != '') OrderDatas.customerUniq = this.state.customer
             this.setState({showModal: false})
             
         }else if (this.state.currentComponent === 'ticketNote') {
 
-            // if (this.state.ticketNote != '') OrderDatas.orderNote = this.state.ticketNote
+            if (this.state.ticketNote != '') OrderDatas.orderNote = this.state.ticketNote
             this.setState({showModal: false})
             
         }else if (this.state.currentComponent === 'numberOfGuest') {
             
-            //  OrderDatas.guests = this.state.guests
+             OrderDatas.guests = this.state.guests
              this.setState({showModal: false})
         }
     }
 
     cancelModal() {
         this.setState({ 
-            showModal: false
+            showModal: false,
+            search: '',
+            isLitst: false,
+            customer: '',
+            cursor: 0
         })
     }
 

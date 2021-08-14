@@ -91,7 +91,7 @@ class Index extends Component{
                                 </div>
 
                                     <div className="2xl:mt-14 xl:mt-12 lg:mt-11 md:mt-10 sm:mt-7 w-full flex justify-center h-middle1MainAmountHeight">
-                                        <TotalButton amount="2177.00"/>
+                                        <TotalButton amount="454545"/>
                                     </div>
                                 
                             </div>
