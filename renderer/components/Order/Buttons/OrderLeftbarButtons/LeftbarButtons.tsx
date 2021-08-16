@@ -2,9 +2,10 @@ import React from "react";
 import { TableDatas } from '../../../../pages/TableCrud/TableData';
 import { WaiterDatas } from "../../../../pages/Waiter/WaitersData";
 import { CustomerDatas } from '../../../../pages/Customer/CustomerData';
-import Select from 'react-select';
 import { OrderDatas } from '../../../../pages/Order/OrdarData';
-import { makePublicRouterInstance } from "next/dist/client/router";
+import SelectOptionSearch from '../../../Comon/SelectOptionSearch';
+import { table } from "console";
+
 
 
 export default class LeftbarButtons extends React.Component{
@@ -17,14 +18,6 @@ export default class LeftbarButtons extends React.Component{
         customer: '',
         ticketNote: '',
         guests: 1,
-
-        search: '',
-
-        isLitst: false,
-
-        cursor: 0,
-        isKeyUpEd: false,
-        
         data : [
         {
             name:'change table',
@@ -65,7 +58,7 @@ export default class LeftbarButtons extends React.Component{
     ]}
     constructor(props){
         super(props);
-        this.handleKeyDown = this.handleKeyDown.bind(this)
+
     }
 
 
@@ -95,6 +88,7 @@ export default class LeftbarButtons extends React.Component{
 
                         </div>
                     </div>
+                    { this.state.currentComponent === 'cancelAll' || this.state.currentComponent === 'print'? null : 
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button onClick={() => this.saveModal()} type="button" className="w-full inline-flex justify-center rounded-md border border-primary hover:bg-primary hover:text-white shadow-sm px-4 py-2 bg-red-600 text-base font-medium bg-white text-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                             Save
@@ -103,26 +97,26 @@ export default class LeftbarButtons extends React.Component{
                             Close
                         </button>
                     </div>
+                    }
                     </div>
                 </div>
         </div>
         )
     }
 
+    onSelectTable = (uniq: string) => {
+        this.setState({ table: uniq })
+        
+    }
+
+    onSelectCustomer = (uniq: string) => {
+        this.setState({ customer: uniq })
+    }
+
     currentBodyInModal() {
         
             if(this.state.currentComponent === 'changeTable') {
-                return   <div className="w-full">
-                            <div className="text-center font-bold text-primary text-xl uppercase">Select Table</div>
-                                
-                            <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.table} onChange={(e) => this.setState({table: e.target.value}) } name="" id="">
-                            <option defaultValue="0">Select A Table</option>
-                                {TableDatas.data.map((table, index) => table.available_status? 
-                                    <option className="block w-full" key={index} value={table.uniq}>{table.title}</option> : null
-                                )}
-                                
-                            </select>
-                        </div>
+                return <SelectOptionSearch data = {TableDatas.data} getUniq = {(uniq) => this.onSelectTable(uniq)}  name="Select Table" />
             }else if (this.state.currentComponent === 'selectWeiter') {
                 return <div className="w-full">
                             <div className="text-center font-bold text-primary text-xl uppercase">Select Waiter</div>
@@ -136,26 +130,10 @@ export default class LeftbarButtons extends React.Component{
                             </select>
                         </div>
             }else if (this.state.currentComponent === 'selectCustomer') {
-                const val = CustomerDatas.data.map((opt, index) => ({ value: opt.uniq, label: opt.name }))
+               
 
-                return <div className="w-full overflow-y-auto h-full">
-                        <div className="text-center font-bold text-primary text-xl uppercase">Select Customer</div>
+                return <SelectOptionSearch data = {CustomerDatas.data} getUniq = {(uniq) => this.onSelectCustomer(uniq)}  name="Select Customer" />
 
-                            <div className="flex flex-row mb-1" onClick={(e) => this.state.isLitst? this.setState({isLitst: false, search: ''}) : this.setState({isLitst: true})}>
-                                <input onKeyDown={this.handleKeyDown } defaultValue={this.state.customer} onChange={(e) => this.setState({search: e.target.value})} type="text" className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
-                                <div className="w-10 h-10 border-t border-r border-b border-primary rounded-tr rounded-br flex justify-center items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-                                    </svg>
-                                </div>
-                            </div>
-                            
-                            {this.state.isLitst ? this.listItem() : null}
-                               
-                 
-
-                            
-                        </div>
             }else if(this.state.currentComponent === 'ticketNote') {
                 return<div className="w-full">
                             <div className="text-center font-bold text-primary text-xl">Write Down Some Note for this Order</div>
@@ -163,81 +141,43 @@ export default class LeftbarButtons extends React.Component{
                             <textarea name=""  onChange={(e) => this.setState({ ticketNote: e.target.value})} id="" className="w-full h-20 outline-none rounded border border-primary px-2 text-grayNormal" defaultValue={this.state.customer}/>
                         </div> 
             }else if (this.state.currentComponent === 'cancelAll') {
-               return <div className="w-full flex justify-evenly">
-                           <div onClick={this.clearAllOrderPage} className="text-center font-bold text-white text-xl uppercase bg-red h-16 w-24 rounded-md pointer shadow-md hover:bg-tomato ">
+               return <div className="w-full">
+                             <div className="text-center font-bold text-primary text-xl mb-4">Cancel the order</div>
+                        <div className="w-full flex justify-evenly">
+                           <div onClick={this.clearAllOrderPage} className="text-center flex justify-center items-center font-bold text-white text-xl uppercase bg-red h-12 rounded-md pointer shadow-md hover:bg-tomato cursor-pointer px-3 ">
                                Clear All
                            </div>
-                           <div>
-                               Clear All
+                           <div onClick={() => this.cancelModal()} className="text-center flex justify-center items-center font-bold text-white text-xl uppercase bg-primary h-12 rounded-md pointer shadow-md hover:bg-blue cursor-pointer px-3 ">
+                               Close
                            </div>
-                       </div> 
+                         
+                        </div> 
+                      </div>
+               
             }else if (this.state.currentComponent === 'numberOfGuest') {
                 return   <div className="w-full">
                             <div className="text-center font-bold text-primary text-xl uppercase">how many guest have?</div>
                                 
                             <input onChange={(e) => this.setState({ guests: e.target.value})} value={this.state.guests} type="number" min="0" max="100" className="w-full rounded h-10 px-2 text-grayNormal outline-none border border-primary" placeholder="Enter guest..." />
                         </div>
+            }else if (this.state.currentComponent === 'print') {
+                return  <div className="w-full">
+                            <div className="text-center font-bold text-primary text-xl mb-4">Cancel the order</div>
+                            <div className="w-full flex justify-evenly">
+                                <div onClick={this.clearAllOrderPage} className="text-center flex justify-center items-center font-bold bg-gray hover:bg-grayNormal text-white text-xl uppercase  h-12 rounded-md pointer shadow-md  cursor-pointer px-3 ">
+                                    Print
+                                </div>
+                                <div onClick={() => this.cancelModal()} className="text-center flex justify-center items-center font-bold text-white text-xl uppercase bg-primary h-12 rounded-md pointer shadow-md hover:bg-blue cursor-pointer px-3 ">
+                                    Close
+                                </div>
+                                
+                            </div> 
+                        </div>
             }
         
     }
     
-    
-    selectList (item) {
-       
-            this.setState({customer: item.name, isLitst: false, search: ''})
-
-    }
-
-    handleKeyDown(e) {
-        var { cursor } = this.state
-        this.setState({isKeyUpEd: true})
-        // arrow up/down button should select next/previous list element
-        if (e.keyCode === 38 && cursor > 0) {
-            
-          this.setState({
-            cursor: cursor - 1
-          })
-         
-        } else if (e.keyCode === 40 && cursor < CustomerDatas.data.length -1) {
-            
-          this.setState( {
-            cursor: cursor + 1
-          })
-            
-
-        }
-      }
-
-    listItem() {
-        const { cursor } = this.state
-        const itemListStyle = "h-10 w-full text-left pl-5 bg-gray flex items-center mb-1 rounded "
-        var customers = CustomerDatas.data.filter(
-            (cus) => { return cus.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;}
-        )
-        return (<div className="h-48 w-full active rounded py-2 px-2 border border-primary shadow-lg overflow-y-auto">
-                    { customers.map((cus, index) => 
-                          {
-                             
-                          if(index === this.state.cursor && this.state.isKeyUpEd === true )
-                             {
-                                
-                             return <div  onClick={ () => this.selectList(cus) } className={itemListStyle}>{cus.name}</div> 
-                            }
-                        
-                            else{ return <div  onClick={ () => this.selectList(cus) } className="h-10 w-full text-left hover:bg-gray pl-5 bg-whiteGray flex items-center mb-1 rounded ">{cus.name}</div>}
-                          
-                            
-                        } 
-                        
-                    
-                    
-                    )}
-                            
-
-                </div>)
-    }
-
-    clearAllOrderPage () {
+      clearAllOrderPage () {
         console.log("hello")
     }
 
@@ -272,10 +212,6 @@ export default class LeftbarButtons extends React.Component{
     cancelModal() {
         this.setState({ 
             showModal: false,
-            search: '',
-            isLitst: false,
-            customer: '',
-            cursor: 0
         })
     }
 
