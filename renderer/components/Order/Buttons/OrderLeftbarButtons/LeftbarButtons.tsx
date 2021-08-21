@@ -4,11 +4,11 @@ import { WaiterDatas } from "../../../../pages/Waiter/WaitersData";
 import { CustomerDatas } from '../../../../pages/Customer/CustomerData';
 import { OrderDatas } from '../../../../pages/Order/OrdarData';
 import SelectOptionSearch from '../../../Comon/SelectOptionSearch';
-import { table } from "console";
+import { observer } from "mobx-react-lite";
 
 
 
-export default class LeftbarButtons extends React.Component{
+class LeftbarButtons extends React.Component{
 
     state = {
         currentComponent: null,
@@ -241,3 +241,5 @@ export default class LeftbarButtons extends React.Component{
     
     )}
 }
+
+export default LeftbarButtons

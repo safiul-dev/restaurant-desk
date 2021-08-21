@@ -16,8 +16,6 @@ import { SubItemDatas } from '../../components/Item/SubItemData';
 
 
 
-
-
 class Index extends Component{
 
     state = {
@@ -34,7 +32,7 @@ class Index extends Component{
     }
 
     componentDidMount () {
-        
+
         this.setState({isMounted: true})
         CategoryDatas.getCategroy()
         ItemDatas.getItems()

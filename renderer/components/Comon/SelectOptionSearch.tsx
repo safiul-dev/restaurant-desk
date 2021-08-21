@@ -20,16 +20,16 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
         this.handleKeyDown = this.handleKeyDown.bind(this)
         
     }
-
+    // selecting the list with mouse clicking...
       selectList (item) {
        
-        this.props.name === 'changeTable' ? this.setState({item: item.title, isLitst: false,}) : this.setState({item: item.name, isLitst: false})
+        item.title ? this.setState({item: item.title, isLitst: false,}) : this.setState({item: item.name, isLitst: false})
         this.props.getUniq(item.uniq)
         // console.log(item.uniq)
        
     }
 
-
+    // handling the up or down key by pressing keyboard  
       handleKeyDown(e) {
         var { cursor } = this.state
         this.setState({isKeyUpEd: true})
@@ -49,6 +49,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
         }
       }
 
+      // showing list items with searchKeyword
       listItem() {
         const itemListStyle = "h-10 w-full text-left pl-5 bg-gray flex items-center mb-1 rounded "
         var items = this.props.data.filter(
@@ -69,7 +70,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
                                     
                                 }
                                 
-                              return <div key={index} onClick={ () => this.selectList(item) } className={itemListStyle}>{this.props.name === 'changeTable' ?item.title : item.name}</div> 
+                              return <div key={index} onClick={ () => this.selectList(item) } className={itemListStyle}>{item.title ?item.title : item.name}</div> 
                             }
                         
                             else{ return <div key={index}  onClick={ () => this.selectList(item) } className="h-10 w-full text-left hover:bg-gray pl-5 bg-whiteGray flex items-center mb-1 rounded ">{item.title? item.title : item.name}</div>}
