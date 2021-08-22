@@ -1,4 +1,4 @@
-import { app } from 'electron';
+import { app, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import { createWindow } from './helpers';
 
@@ -12,7 +12,7 @@ if (isProd) {
 
 (async () => {
   await app.whenReady();
-
+  console.log("hellor called")
   const mainWindow = createWindow('main', {
     width: 1024,
     height: 720,
@@ -25,8 +25,12 @@ if (isProd) {
     await mainWindow.loadURL(`http://localhost:${port}/home`);
     mainWindow.webContents.openDevTools();
   }
+
 })();
+
+
 
 app.on('window-all-closed', () => {
   app.quit();
 });
+
