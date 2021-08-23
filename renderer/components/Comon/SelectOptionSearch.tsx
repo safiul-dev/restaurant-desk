@@ -12,7 +12,8 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
         isLitst: false,
         cursor: 0,
         isKeyUpEd: false,
-        item: ''
+        item: '',
+        type: 'text'
       }
 
       constructor(props){
@@ -22,7 +23,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
     }
     // selecting the list with mouse clicking...
       selectList (item) {
-       
+       console.log(item.name)
         item.title ? this.setState({item: item.title, isLitst: false,}) : this.setState({item: item.name, isLitst: false})
         this.props.getUniq(item.uniq)
         // console.log(item.uniq)
@@ -63,14 +64,15 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
                              {
                                 
                                 try {
+
                                    item.title ? this.setState({item: item.title}) : this.setState({item: item.name})
-                                   this.props.getUniq(item.uniq)
-                                   
+                                   this.props.getUniq(item.uniq)  
+                                   console.log(item.name) 
                                 } catch (error) {
                                     
                                 }
                                 
-                              return <div key={index} onClick={ () => this.selectList(item) } className={itemListStyle}>{item.title ?item.title : item.name}</div> 
+                              return <div key={index} onClick={ () => this.selectList(item) } className={itemListStyle}>{item.title ? item.title : item.name}</div> 
                             }
                         
                             else{ return <div key={index}  onClick={ () => this.selectList(item) } className="h-10 w-full text-left hover:bg-gray pl-5 bg-whiteGray flex items-center mb-1 rounded ">{item.title? item.title : item.name}</div>}
@@ -88,7 +90,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
                         <div className="text-center font-bold text-primary text-xl uppercase">{this.props.name}</div>
 
                             <div className="flex flex-row mb-1" onClick={(e) => this.state.isLitst? this.setState({isLitst: false, searchKeyword: ''}) : this.setState({isLitst: true})}>
-                                <input onKeyDown={this.handleKeyDown } defaultValue={this.state.item} onChange={(e) => this.setState({searchKeyword: e.target.value})} type="text" className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
+                                <input type="text" onKeyDown={this.handleKeyDown } defaultValue={this.state.item} placeholder="Search or Select" onChange={(e) => this.setState({searchKeyword: e.target.value})}  className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
                                 <div className="w-10 h-10 border-t border-r border-b border-primary rounded-tr rounded-br flex justify-center items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />

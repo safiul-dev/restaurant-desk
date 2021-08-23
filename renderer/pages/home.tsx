@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head';
 import Link from 'next/link';
 import { loadDataFromStorage, saveDataInStorage } from '../renderer';
 import {ipcRenderer} from 'electron'
@@ -23,20 +22,20 @@ function Home(props) {
 
   function HendleRecievedData (event, data) {
     console.log("recievedData From")
-    // setItem([...data.message])
+    setItem([...data.message])
   }
 
   // save item 
   const addItem = (item) => {
     console.log("Next Trigered for add new item")
     saveDataInStorage(item)
-    setValue(item)
+    setValue('')
   }
 
   useEffect(() => {
-    ipcRenderer.on("Handle_Save_Data", HandleNewData)
+    ipcRenderer.on("HENDLE_SAVE_DATA", HandleNewData)
     return () => {
-      ipcRenderer.on("Handle_Save_Data", HandleNewData)
+      ipcRenderer.on("HENDLE_SAVE_DATA", HandleNewData)
     }
   })
 

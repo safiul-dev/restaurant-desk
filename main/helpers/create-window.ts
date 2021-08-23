@@ -82,20 +82,20 @@ export default (windowName: string, options: BrowserWindowConstructorOptions): B
   };
   win = new BrowserWindow(browserOptions);
   
-  ipcMain.on("FETCH_DATA_FROM_STORAGE", (event, message) => {
-    console.log("Main Resieve: FETCH_DATA_FROM_STORAGE", message)
-    win.send("HENDLE FATCH DATA", {
-      success: true,
-      messsage: message
-    })
-  })
-  ipcMain.on("SAVE_DATA_IN_STORAGE", (event, message) => {
-    console.log("Main Resieve: SAVE_DATA_IN_STORAGE", message)
-    win.send("HENDLE_SAVE_DATA", {
-      success: true,
-      messsage: message
-    })
-  })
+  // ipcMain.on("FETCH_DATA_FROM_STORAGE", (event, message) => {
+  //   console.log("Main Resieve: FETCH_DATA_FROM_STORAGE", message)
+  //   win.send("Hendle_fatch_data", {
+  //     success: true,
+  //     messsage: message
+  //   })
+  // })
+  // ipcMain.on("SAVE_DATA_IN_STORAGE", (event, message) => {
+  //   console.log("Main Resieve: SAVE_DATA_IN_STORAGE", message)
+  //   win.send("HENDLE_SAVE_DATA", {
+  //     success: true,
+  //     messsage: message
+  //   })
+  // })
   win.on('close', saveState);
 
   return win;

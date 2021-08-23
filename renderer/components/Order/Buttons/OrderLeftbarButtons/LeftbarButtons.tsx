@@ -113,24 +113,19 @@ class LeftbarButtons extends React.Component{
         this.setState({ customer: uniq })
     }
 
+    onSelectWater = (uniq: string) => {
+        console.log(uniq)
+        this.setState({ Waiter: uniq })
+    }
+
+    // current body setting up using currentComponent
     currentBodyInModal() {
         
             if(this.state.currentComponent === 'changeTable') {
                 return <SelectOptionSearch data = {TableDatas.data} getUniq = {(uniq) => this.onSelectTable(uniq)}  name="Select Table" />
             }else if (this.state.currentComponent === 'selectWeiter') {
-                return <div className="w-full">
-                            <div className="text-center font-bold text-primary text-xl uppercase">Select Waiter</div>
-                                
-                            <select className="h-10 outline-none rounded border border-primary w-full text-grayNormal" defaultValue={this.state.waiter} onChange={(e) => this.setState({waiter: e.target.value}) } name="" id="">
-                            <option defaultValue="0">Select A Waiter</option>
-                                {WaiterDatas.data.map((waiter, index) => waiter.active? 
-                                    <option className="block w-full" key={index} value={waiter.uniq}>{waiter.name}</option> : null
-                                )}
-                                
-                            </select>
-                        </div>
+                return <SelectOptionSearch data = {WaiterDatas.data} getUniq = {(uniq) => this.onSelectWater(uniq)}  name="Select Waiter" />
             }else if (this.state.currentComponent === 'selectCustomer') {
-               
 
                 return <SelectOptionSearch data = {CustomerDatas.data} getUniq = {(uniq) => this.onSelectCustomer(uniq)}  name="Select Customer" />
 

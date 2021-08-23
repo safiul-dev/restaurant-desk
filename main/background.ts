@@ -12,7 +12,6 @@ if (isProd) {
 
 (async () => {
   await app.whenReady();
-  console.log("hellor called")
   const mainWindow = createWindow('main', {
     width: 1024,
     height: 720,
