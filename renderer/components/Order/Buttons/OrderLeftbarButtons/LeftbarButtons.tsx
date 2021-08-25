@@ -114,7 +114,7 @@ class LeftbarButtons extends React.Component{
     }
 
     onSelectWater = (uniq: string) => {
-        console.log(uniq)
+       
         this.setState({ Waiter: uniq })
     }
 
@@ -137,7 +137,7 @@ class LeftbarButtons extends React.Component{
                         </div> 
             }else if (this.state.currentComponent === 'cancelAll') {
                return <div className="w-full">
-                             <div className="text-center font-bold text-primary text-xl mb-4">Cancel the order</div>
+                             <div className="text-center font-bold text-primary text-xl mb-4">Cancel The Order</div>
                         <div className="w-full flex justify-evenly">
                            <div onClick={this.clearAllOrderPage} className="text-center flex justify-center items-center font-bold text-white text-xl uppercase bg-red h-12 rounded-md pointer shadow-md hover:bg-tomato cursor-pointer px-3 ">
                                Clear All
@@ -159,7 +159,7 @@ class LeftbarButtons extends React.Component{
                 return  <div className="w-full">
                             <div className="text-center font-bold text-primary text-xl mb-4">Cancel the order</div>
                             <div className="w-full flex justify-evenly">
-                                <div onClick={this.clearAllOrderPage} className="text-center flex justify-center items-center font-bold bg-gray hover:bg-grayNormal text-white text-xl uppercase  h-12 rounded-md pointer shadow-md  cursor-pointer px-3 ">
+                                <div onClick={() => this.clearAllOrderPage()} className="text-center flex justify-center items-center font-bold bg-gray hover:bg-grayNormal text-white text-xl uppercase  h-12 rounded-md pointer shadow-md  cursor-pointer px-3 ">
                                     Print
                                 </div>
                                 <div onClick={() => this.cancelModal()} className="text-center flex justify-center items-center font-bold text-white text-xl uppercase bg-primary h-12 rounded-md pointer shadow-md hover:bg-blue cursor-pointer px-3 ">
@@ -173,7 +173,15 @@ class LeftbarButtons extends React.Component{
     }
     
       clearAllOrderPage () {
-        console.log("hello")
+        OrderDatas.data.splice(0, OrderDatas.data.length)
+        OrderDatas.VAT = "0.00"
+        OrderDatas.TotalAmount = "0.00"
+        OrderDatas.TotalBill = "0.00"
+        OrderDatas.guests = 0
+        OrderDatas.tableUniq = "0"
+        OrderDatas.customerUniq = "0"
+        OrderDatas.waiterUniq = "0"
+        
     }
 
     saveModal() {

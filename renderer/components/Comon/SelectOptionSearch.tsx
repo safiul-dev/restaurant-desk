@@ -23,8 +23,8 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
     }
     // selecting the list with mouse clicking...
       selectList (item) {
-       console.log(item.name)
-        item.title ? this.setState({item: item.title, isLitst: false,}) : this.setState({item: item.name, isLitst: false})
+       
+        item.title ? this.setState({item: item.title, isLitst: false, searchKeyword: ''}) : this.setState({item: item.name, isLitst: false, searchKeyword: ''})
         this.props.getUniq(item.uniq)
         // console.log(item.uniq)
        
@@ -67,7 +67,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
 
                                    item.title ? this.setState({item: item.title}) : this.setState({item: item.name})
                                    this.props.getUniq(item.uniq)  
-                                   console.log(item.name) 
+                                   
                                 } catch (error) {
                                     
                                 }
@@ -84,13 +84,14 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
 
                 </div>)
     }
-    render() { 
+
+    render() {  
         return ( 
             <div className="w-full overflow-y-auto h-full">
                         <div className="text-center font-bold text-primary text-xl uppercase">{this.props.name}</div>
 
                             <div className="flex flex-row mb-1" onClick={(e) => this.state.isLitst? this.setState({isLitst: false, searchKeyword: ''}) : this.setState({isLitst: true})}>
-                                <input type="text" onKeyDown={this.handleKeyDown } defaultValue={this.state.item} placeholder="Search or Select" onChange={(e) => this.setState({searchKeyword: e.target.value})}  className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
+                                <input type="text" onKeyDown={this.handleKeyDown } value={this.state.item} placeholder="Search or Select" onChange={(e) => this.setState({searchKeyword: e.target.value, item: e.target.value})}  className="w-full pl-2 border border-primary rounded-tl outline-none rounded-bl h-10" />
                                 <div className="w-10 h-10 border-t border-r border-b border-primary rounded-tr rounded-br flex justify-center items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />

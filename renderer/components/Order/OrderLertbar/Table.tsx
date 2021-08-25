@@ -39,46 +39,50 @@ class Table extends Component {
 
     render() {
     return(
-        <div className="h-full">
-        <div className=" h-height80% border-b border-white overflow-y-scroll scrollbar-hide">
-                <table className="w-full   rounded-t-md">
-                            <thead className="bg-TheadColor rounded text-white overflow-y-auto h-16 ">
-                                <tr className="border-white border">
-                                    <td className="border border-white w-width5% text-center">QT</td>
+        <div className="h-full w-full">
+        <div className=" h-height80% border-b border-white w-full">
+                <table className="w-full">
+                            <thead className="bg-TheadColor text-white w-full ">
+                                <tr className=" flex w-full">
+                                    <td className="border border-white text-center" style={{width: "4vh"}}>QT</td>
                                     <td className="border border-white w-width65% text-center">Item Name</td>
                                     <td className="border border-white w-width30% text-center">Amount</td>
                                 </tr>
                             </thead>
-                            <tbody className="">
-                                {OrderDatas.data.length? OrderDatas.data.map((item, index) =>  
-                                <tr key={index} className="border border-white" >
-                                    <td className="border border-white">
-                                        <div className="group w-full h-full flex justify-center items-center">
+                            <tbody className="h-32 w-full ">
+                                <div className="overflow-y-scroll" style={{height: "22vh"}}>
+                                <div className="grid grid-flow-row-dense w-full  ">  
+                                   {OrderDatas.data.length? OrderDatas.data.map((item, index) =>  
+                                        <tr key={index} className=" w-full flex" >
+                                            <td className="border-white border text-center" style={{width: "4vh"}}>
+                                                <div className="group w-full h-full flex justify-center items-center">
+                                                    
+                                                    <div className=" block group-hover:hidden" id="qt">{item.itemQt}</div>
+                                                        <div className="hidden group-hover:block text-red ">
+                                                            <svg onClick={() => this.increaseQuantity(item.itemUniq, item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed  rounded-full mb-0.5"fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                                            </svg>
+                                                            <svg onClick={() => this.decrementQuantity(item.itemUniq,item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 12H6" />
+                                                            </svg>
+                                                        </div>
+                                                </div>
+                                                </td>
+                                            <td className="border-white border text-left" style={{width: "48.5vh"}}>
                                             
-                                            <div className=" block group-hover:hidden" id="qt">{item.itemQt}</div>
-                                            <div className="hidden group-hover:block text-red ">
-                                            
-
-                                                <svg onClick={() => this.increaseQuantity(item.itemUniq, item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed  rounded-full mb-0.5"fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                                </svg>
-                                                <svg onClick={() => this.decrementQuantity(item.itemUniq,item.subPricingUniq)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 hover:text-blackRed border border-secondary hover:border-blackRed rounded-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 12H6" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        </td>
-                                    <td className="border border-white">
-                                    
-                                    <h1 className="2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">{item.itemTitle}</h1>
-                                        <h1 className=" text-center rounded-full font-normal text-smallFont md:text-extraSmall2 sm:text-extraSmall bg-white w-7/12">Submitted, Sent to kitchend, Order no. 1552</h1>
-                                    </td>
-                                    <td className="border border-white text-center 2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">{item.itemPrice}</td>
-                                </tr>
+                                            <h1 className="2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">{item.itemTitle}</h1>
+                                                <h1 className=" text-center rounded-full font-normal text-smallFont md:text-extraSmall2 sm:text-extraSmall bg-white w-7/12">Submitted, Sent to kitchend, Order no. 1552</h1>
+                                            </td>
+                                            <td style={{width: "19.5vh"}} className="border border-white text-center 2xl:text-lg xl:text-base lg:text-tiny md:text-smallFont sm:text-extraSmall2">{item.itemPrice}</td>
+                                        </tr>
                                     )
                                 :
                                     null
                                 }
+                                </div>
+                                </div>
+
+                                
                             </tbody>
                 </table>
               
@@ -86,12 +90,12 @@ class Table extends Component {
 
                 <div className="float-right mr-16">
                     <div className="flex flex-row">
-                        <div className="mr-20">Total:</div>
-                        <div className="">{OrderDatas.total}</div>
+                        <div className="mr-20">Total :</div>
+                        <div className="">{OrderDatas.total? OrderDatas.total : "0.00"}</div>
                     </div>
                     <div className="flex flex-row">
-                        <div className="mr-20">Vat:</div>
-                        <div className="ml-5">177.00</div>
+                        <div className="mr-16">Vat :</div>
+                        <div className="ml-5">{OrderDatas.VAT ? OrderDatas.VAT : "0.00"}</div>
                     </div>
                 </div>
     </div>

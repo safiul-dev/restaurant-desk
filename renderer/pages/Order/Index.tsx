@@ -66,31 +66,31 @@ class Index extends Component{
                         <div className="h-4/5 pt-3 bg-primary w-full rounded-b-middle1BottomRounded shadow-lg rounded-lg">
                             <div className="h-4/5 mx-2 ">
                                 <div className="h-full">
-                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg flex justify-between pb-1">
-                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Ticket #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span> </div>
-                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Order #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
-                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 mb-1">Table: <span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">{0}</span></div>
+                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg flex items-center justify-between">
+                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 ">Ticket #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span> </div>
+                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 ">Order #<span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">621</span></div>
+                                        <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 ">Table: <span className="bg-red rounded-md text-white 2xl:text-base xl:text-tiny lg:text-smallFont md:text-smallFont sm:text-extraSmall2">{0}</span></div>
                                     </div>
-                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 flex justify-between">
+                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 flex items-center justify-between">
                                         <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2">Status: <span className="bg-black rounded-md uppercase text-red 2xl:font-semibold xl:font-semibold lg:font-medium md:font-normal sm:font-light">uppaid</span></div>
                                         <div className="2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 pr-2">New: <span className="text-primary">Running Order</span></div>
                                     </div>
-                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 mb-1 2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2">Dept: Dine In</div>
+                                    <div className="rounded-sm h-middle1SmallTableCollunmHeight bg-middle1Bg mt-0.5 mb-1 2xl:text-lg xl:text-lg lg:text-smallFont md:text-smallFont sm:text-extraSmall2 flex justify-items-start items-center">Dept: Dine In</div>
                                     <div className="w-full h-middle1LongTableCollunmHeight bg-middle1Bg rounded-b-3xl rounded">
                                         <Table/>
                                     </div>
 
                                     <div className=" mt-1 pl-2 sm:px-4 text-white flex justify-between sm:text-extraSmall2 md:text-smallFont lg:text-smallFont xl:text-tiny">
-                                        <div>Number Of Guests: 01</div>
+                                        <div>Number Of Guests: {OrderDatas.guests}</div>
                                         <div className="mr-5 text-right">
-                                            <div>Distink Menu Items: 03</div>
-                                            <div>Number Of Ordered Items: 04</div>
+                                            
+                                            <div>Number Of Ordered Items: {OrderDatas.data.reduce((n, {itemQt}) => n + itemQt, 0)}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                     <div className="2xl:mt-14 xl:mt-12 lg:mt-11 md:mt-10 sm:mt-7 w-full flex justify-center h-middle1MainAmountHeight">
-                                        <TotalButton amount="454545"/>
+                                        <TotalButton amount={OrderDatas.TotalBill? OrderDatas.TotalBill : "0.00"}/>
                                     </div>
                                 
                             </div>
