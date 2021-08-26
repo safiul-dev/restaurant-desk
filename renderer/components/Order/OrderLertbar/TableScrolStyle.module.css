@@ -1,0 +1,30 @@
+.scrollBer {
+    overflow-y: scroll;
+}
+
+.scrollBer::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 50%;
+}
+
+
+/* Track */
+
+.scrollBer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+.scrollBer::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 35px;
+}
+
+
+/* Handle on hover */
+
+.scrollBer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
