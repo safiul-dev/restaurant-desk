@@ -4,7 +4,7 @@ import { TableDatas } from '../../pages/TableCrud/TableData';
 interface SelectOptionProps {
     name: string,
     data: any,
-    getUniq: (uniq: string) => void
+    getUniq: (uniq: string, entered: boolean) => void
 }
 class SelectOptionSearch extends React.Component<SelectOptionProps> {
     state = { 
@@ -13,6 +13,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
         cursor: 0,
         isKeyUpEd: false,
         item: '',
+        itemUniq: '',
         type: 'text'
       }
 
@@ -25,7 +26,7 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
       selectList (item) {
        
         item.title ? this.setState({item: item.title, isLitst: false, searchKeyword: ''}) : this.setState({item: item.name, isLitst: false, searchKeyword: ''})
-        this.props.getUniq(item.uniq)
+        this.props.getUniq(item.uniq, false)
         // console.log(item.uniq)
        
     }
@@ -45,8 +46,11 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
           this.setState( {
             cursor: cursor + 1
           })
-            
+          
+        }
 
+        if ( e.keyCode === 13 ) {
+          this.props.getUniq(this.state.itemUniq, true)
         }
       }
 
@@ -65,8 +69,8 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
                                 
                                 try {
 
-                                   item.title ? this.setState({item: item.title}) : this.setState({item: item.name})
-                                   this.props.getUniq(item.uniq)  
+                                   item.title ? this.setState({item: item.title, itemUniq: item.uniq}) : this.setState({item: item.name, itemUniq: item.uniq})
+                                  //  this.props.getUniq(item.uniq)  
                                    
                                 } catch (error) {
                                     

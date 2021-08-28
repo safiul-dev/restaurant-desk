@@ -104,30 +104,39 @@ class LeftbarButtons extends React.Component{
         )
     }
 
-    onSelectTable = (uniq: string) => {
+    onSelectTable = (uniq: string, entered) => {
         this.setState({ table: uniq })
+        if (entered) {
+            this.saveModal()
+        }
         
     }
 
-    onSelectCustomer = (uniq: string) => {
+    onSelectCustomer = (uniq: string, entered) => {
         this.setState({ customer: uniq })
+        if (entered) {
+            this.saveModal()
+        }
     }
 
-    onSelectWater = (uniq: string) => {
+    onSelectWater = (uniq: string, entered) => {
        
         this.setState({ Waiter: uniq })
+        if (entered) {
+            this.saveModal()
+        }
     }
 
     // current body setting up using currentComponent
     currentBodyInModal() {
         
             if(this.state.currentComponent === 'changeTable') {
-                return <SelectOptionSearch data = {TableDatas.data} getUniq = {(uniq) => this.onSelectTable(uniq)}  name="Select Table" />
+                return <SelectOptionSearch data = {TableDatas.data} getUniq = {(uniq, entered:boolean) => this.onSelectTable(uniq, entered)}  name="Select Table" />
             }else if (this.state.currentComponent === 'selectWeiter') {
-                return <SelectOptionSearch data = {WaiterDatas.data} getUniq = {(uniq) => this.onSelectWater(uniq)}  name="Select Waiter" />
+                return <SelectOptionSearch data = {WaiterDatas.data} getUniq = {(uniq, entered:boolean) => this.onSelectWater(uniq, entered)}  name="Select Waiter" />
             }else if (this.state.currentComponent === 'selectCustomer') {
 
-                return <SelectOptionSearch data = {CustomerDatas.data} getUniq = {(uniq) => this.onSelectCustomer(uniq)}  name="Select Customer" />
+                return <SelectOptionSearch data = {CustomerDatas.data} getUniq = {(uniq, entered:boolean) => this.onSelectCustomer(uniq, entered)}  name="Select Customer" />
 
             }else if(this.state.currentComponent === 'ticketNote') {
                 return<div className="w-full">
