@@ -16,14 +16,13 @@ class TableData{
     
       singleData: TableProps;
 
-
     constructor() {
         makeAutoObservable(this)
     }
 
    async getTables() {
       try {
-        const res = await fetch("http://localhost:3000/api/tables")
+        const res = await fetch("/tabhttp://localhost:3000/apiles")
       this.data = await res.json()
       } catch (error) {
         console.log(error)

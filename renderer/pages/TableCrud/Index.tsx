@@ -58,11 +58,6 @@ import { TableDatas } from './TableData';
                                     <input type="number" value={this.state.capacity} onChange={(e) => this.setState({capacity: e.target.value})} name="capacity" className="h-8 px-2 w-full rounded-md border border-gray outline-none" />
                                 </div>
 
-                      
-
-                            
-
-
                         </div>
                     </div>
                     <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
