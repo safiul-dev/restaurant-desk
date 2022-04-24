@@ -24,7 +24,7 @@ export default function AppLayout ({ children }) {
                       </div>
 
                       <div>
-                              <h1 className="text-white uppercase not-italic sm:font-light md:font-medium lg:font-semibold xl:font-bold tracking-wide font-sans text-leftButtonFontSize sm:text-tiny md:text-base lg:text-lg xl:text-xl text-center">order</h1>
+                              <h1 className="text-white uppercase not-italic sm:font-light md:font-medium lg:font-semibold xl:font-medium tracking-wide font-sans text-leftButtonFontSize sm:text-tiny md:text-base lg:text-lg xl:text-base text-center">Dashboard</h1>
                         </div>
                     </div>
                      
