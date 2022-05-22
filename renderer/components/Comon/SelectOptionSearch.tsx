@@ -1,5 +1,4 @@
 import React from "react";
-import { TableDatas } from '../../pages/TableCrud/TableData';
  
 interface SelectOptionProps {
     name: string,
@@ -104,10 +103,6 @@ class SelectOptionSearch extends React.Component<SelectOptionProps> {
                             </div>
                             
                             {this.state.isLitst ? this.listItem() : null}
-                               
-                 
-
-                            
                         </div>
          );
     }

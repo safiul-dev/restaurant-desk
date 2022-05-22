@@ -159,7 +159,6 @@ import { TableDatas } from './TableData';
     render() {
         return (
         <React.Fragment>
-            <AppLayout>
             <div className="w-full h-middleHeight flex">
                 <div className="w-width3% bg-black h-full"></div>
                 <div className="w-width94% bg-white h-full">
@@ -260,7 +259,6 @@ import { TableDatas } from './TableData';
                
             </div>
             {this.state.modal? this.Modal() : null}
-            </AppLayout>
         </React.Fragment>
         )
     }
