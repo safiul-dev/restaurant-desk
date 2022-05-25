@@ -179,7 +179,6 @@ class Index extends Component<P, IndexState> {
     render() {
         return (
             <react.Fragment>
-                <AppLayout>
                         <div className="w-full h-middleHeight flex">
                         <div className="w-width3% bg-black h-full"></div>
                         <div className="w-width94% bg-white h-full">
@@ -238,7 +237,6 @@ class Index extends Component<P, IndexState> {
                     
                     </div>
             { this.state.modal? this.Modal() : null }
-                </AppLayout>
             </react.Fragment>
         );
     }

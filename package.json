@@ -12,13 +12,21 @@
     "electron": "ELECTRON_DISABLE_SECURITY_WARNINGS=true electron ."
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.2",
+    "axios": "^0.27.2",
     "electron-serve": "^1.1.0",
     "electron-store": "^7.0.2",
     "mobx": "^6.3.2",
     "mobx-react": "^7.2.0",
+    "react-hook-form": "^7.31.2",
+    "react-icons": "^4.3.1",
+    "react-paginate": "^8.1.3",
+    "react-query": "^3.39.0",
     "react-select": "^4.3.1",
+    "react-table": "^7.8.0",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",
+    "sweetalert2": "^11.4.15",
     "tailwind-scrollbar-hide": "^1.0.3"
   },
   "devDependencies": {

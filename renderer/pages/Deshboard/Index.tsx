@@ -6,7 +6,6 @@ import AppLayout from '../../AppLayout/AppLayout'
 export default function Index() {
     return (
         <React.Fragment>
-            <AppLayout>
             <div className="w-full h-middleHeight flex">
                 <div className="w-width3% bg-black h-full"></div>
                 <div className="w-width94% bg-white h-full">
@@ -151,7 +150,6 @@ export default function Index() {
                 <div className="w-width3% bg-black h-full"></div>
                
             </div>
-            </AppLayout>
         </React.Fragment>
     )
 }

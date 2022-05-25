@@ -51,7 +51,6 @@ class Index extends Component{
   
         return (
             <React.Fragment>
-            <AppLayout>
             <div className="bg-white w-full flex h-middleHeight">
 
             <div className="w-1/2 h-full mr-1">
@@ -126,7 +125,6 @@ class Index extends Component{
                 
             </div>
         </div>
-        </AppLayout>
         </React.Fragment>
         );
     }
