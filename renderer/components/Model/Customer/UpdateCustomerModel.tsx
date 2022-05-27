@@ -1,10 +1,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { AxiosError } from "axios";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AiFillPlusCircle } from "react-icons/ai";
 import { useMutation } from "react-query";
-import { createCustomer } from "../../../querys/customer";
+import { updateCustomer } from "../../../querys/customer/index";
 
 type errorType = {
   uniq: string;
@@ -14,19 +14,31 @@ type errorType = {
   address?: string;
   active?: string;
 };
-export default function CreateModal({ isOpen, closeModal }: any) {
+export default function UpdateCustomerModel({
+  isOpen,
+  closeModal,
+  userToEdit,
+  allUser,
+  setAllUser,
+}: any) {
   // // create a post request to the server
   // const createUser = async (data: any) => {
 
   //         const response = await createData(data, '/customers');
   //         console.log(response);
   // }
+
+  // useEffect(() => {
+  //   console.log(userToEdit);
+  // }, []);
+
+  // console.log(userToEdit);
   const {
-    data: createCustomerData,
-    error: createCustomerError,
-    isLoading: createCustomerLoading,
-    mutate: createCustomerMutate,
-  } = useMutation<any, AxiosError, any>(createCustomer, {
+    data: updateCustomerData,
+    error: updateCustomerError,
+    isLoading: updateCustomerLoading,
+    mutate: updateCustomerMutate,
+  } = useMutation<any, AxiosError, any>(updateCustomer, {
     onSuccess: (data) => {
       console.log(data);
       setTimeout(() => {
@@ -53,13 +65,22 @@ export default function CreateModal({ isOpen, closeModal }: any) {
     } else {
       data.active = false;
     }
-    data.uniq =
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15);
-    createCustomerMutate(data);
+    updateCustomerMutate(data);
     console.log(data);
     reset();
   };
+
+  // const formTitles = {
+  //   name: "name",
+  //   status: "status",
+  //   address: "address",
+  //   email: "email",
+  //   phone: "phone",
+  // };
+
+  useEffect(() => {
+    reset(userToEdit);
+  }, [userToEdit]);
 
   return (
     <>
@@ -108,7 +129,7 @@ export default function CreateModal({ isOpen, closeModal }: any) {
                   <span className="inline-block text-2xl mr-3 relative top-1 justify-center">
                     <AiFillPlusCircle />
                   </span>
-                  Create a new user
+                  Edit and Update user
                 </Dialog.Title>
 
                 <div className="w-11/12 mx-auto">
@@ -119,6 +140,7 @@ export default function CreateModal({ isOpen, closeModal }: any) {
                         id="uniq"
                         {...register("uniq", { required: false })}
                       />
+
                       <label htmlFor="name">Name</label>
                       <input
                         className="py-3 px-3 outline-none bg-gray-100 mb-3 rounded-md"
@@ -168,7 +190,7 @@ export default function CreateModal({ isOpen, closeModal }: any) {
                           <small>Type a valid address</small>
                         </span>
                       )}
-                      <label htmlFor="active">active</label>
+                      <label htmlFor="active">Status</label>
                       <select
                         className="py-3 px-3 outline-none bg-gray-100 mb-3 rounded-md"
                         id="active"
@@ -182,8 +204,8 @@ export default function CreateModal({ isOpen, closeModal }: any) {
                         <div className="w-1/2 mr-3">
                           <input
                             type="submit"
-                            value="Create user"
-                            className="w-full  px-5 py-3 bg-rose-500 mt-5 text-white rounded cursor-pointer hover:bg-rose-600 transition duration-300"
+                            value="Update user"
+                            className="w-full  px-5 py-3 bg-rose-500 mt-5 text-black rounded cursor-pointer hover:bg-rose-600 transition duration-300"
                           />
                         </div>
                         <div

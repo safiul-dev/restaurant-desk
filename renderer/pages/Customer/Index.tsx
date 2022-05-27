@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react";
-import CustomerTable from "../../components/Comon/tables/customerTable";
+import CustomerTable from "../../components/Comon/tables//CustomerTable";
 import CreateModal from "../../components/Model/Customer/CreateModal";
 interface IndexProps {}
 

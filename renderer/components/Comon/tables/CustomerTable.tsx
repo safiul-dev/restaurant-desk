@@ -8,6 +8,7 @@ import {
   useTable,
 } from "react-table";
 import { getDatas } from "../../../querys/getDatas";
+import UpdateCustomerModel from "../../Model/Customer/UpdateCustomerModel";
 // import Swal from "sweetalert2";
 import LoaderAnimation from "../LoaderAnimation";
 
@@ -158,6 +159,7 @@ const CustomerTable = ({ isCreateModalOpen }) => {
 
   function editUser(user: any) {
     setUserToEdit(user);
+    // console.log(user);
     openEditUserModal();
   }
 
@@ -184,13 +186,14 @@ const CustomerTable = ({ isCreateModalOpen }) => {
   }
   return (
     <div>
-      {/* <EditUserModal
-        isOpen={isEditUserModalOpen} 
-        closeModal={closeEditUserModal} 
-        userToEdit={userToEdit} 
-        allUser={allUser} 
-        setAllUser={setAllUser} 
-      /> */}
+      <UpdateCustomerModel
+        isOpen={isEditUserModalOpen}
+        closeModal={closeEditUserModal}
+        userToEdit={userToEdit}
+        allUser={allUser}
+        setAllUser={setAllUser}
+      />
+
       <table
         className="bg-secondary w-width99% mx-auto my-1 overflow-y-auto"
         {...getTableProps()}
